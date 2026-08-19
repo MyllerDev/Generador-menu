@@ -951,11 +951,40 @@ async function generatePNG() {
         return;
     }
 
-    const menu = cards[0];
-
     try {
 
-        const canvas = await html2canvas(menu, {
+        const original = cards[0];
+
+        // Crear copia
+        const clone = original.cloneNode(true);
+
+        // Contenedor temporal
+        const container = document.createElement("div");
+
+        container.style.position = "fixed";
+        container.style.left = "-10000px";
+        container.style.top = "0";
+        container.style.width = "397px";
+        container.style.height = "374px";
+        container.style.background = "#ffffff";
+        container.style.zIndex = "-9999";
+
+        // IMPORTANTE:
+        // eliminar transformaciones que puedan venir del móvil
+        clone.style.transform = "none";
+        clone.style.transformOrigin = "initial";
+        clone.style.width = "397px";
+        clone.style.height = "374px";
+        clone.style.margin = "0";
+
+        container.appendChild(clone);
+
+        document.body.appendChild(container);
+
+        // Esperar a que el navegador renderice la copia
+        await new Promise(resolve => setTimeout(resolve, 150));
+
+        const canvas = await html2canvas(clone, {
 
             scale: 3,
 
@@ -965,9 +994,20 @@ async function generatePNG() {
 
             backgroundColor: "#ffffff",
 
-            logging: false
+            logging: false,
+
+            width: 397,
+
+            height: 374,
+
+            windowWidth: 397,
+
+            windowHeight: 374
 
         });
+
+        // Eliminar copia
+        document.body.removeChild(container);
 
         canvas.toBlob(function(blob) {
 
@@ -984,10 +1024,7 @@ async function generatePNG() {
                 }
             );
 
-            /* =========================
-               CELULARES
-            ========================= */
-
+            // CELULAR
             if (
                 navigator.share &&
                 navigator.canShare &&
@@ -1009,11 +1046,7 @@ async function generatePNG() {
                 return;
             }
 
-
-            /* =========================
-               PC / NAVEGADORES
-            ========================= */
-
+            // PC
             const url = URL.createObjectURL(blob);
 
             const link = document.createElement("a");
