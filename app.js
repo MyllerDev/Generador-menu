@@ -942,44 +942,107 @@ async function generatePDF() {
    GENERAR PNG
 ========================================================= */
 
-function generatePNG() {
+async function generatePNG() {
 
     const cards = document.querySelectorAll(".menu-card");
 
     if (!cards.length) {
-        alert("No se encontraron los menús.");
+        alert("No se encontró el menú.");
         return;
     }
 
     const menu = cards[0];
 
-    html2canvas(menu, {
+    try {
 
-        scale: 4,
+        const canvas = await html2canvas(menu, {
 
-        useCORS: true,
+            scale: 3,
 
-        backgroundColor: "#ffffff",
+            useCORS: true,
 
-        logging: false
+            allowTaint: false,
 
-    }).then(canvas => {
+            backgroundColor: "#ffffff",
 
-        const link = document.createElement("a");
+            logging: false
 
-        link.download = "menu.png";
+        });
 
-        link.href = canvas.toDataURL("image/png");
+        canvas.toBlob(function(blob) {
 
-        link.click();
+            if (!blob) {
+                alert("No se pudo generar la imagen.");
+                return;
+            }
 
-    }).catch(error => {
+            const file = new File(
+                [blob],
+                "menu.png",
+                {
+                    type: "image/png"
+                }
+            );
+
+            /* =========================
+               CELULARES
+            ========================= */
+
+            if (
+                navigator.share &&
+                navigator.canShare &&
+                navigator.canShare({
+                    files: [file]
+                })
+            ) {
+
+                navigator.share({
+                    files: [file],
+                    title: "Menú del restaurante",
+                    text: "Menú"
+                }).catch(error => {
+
+                    console.log("Compartir cancelado:", error);
+
+                });
+
+                return;
+            }
+
+
+            /* =========================
+               PC / NAVEGADORES
+            ========================= */
+
+            const url = URL.createObjectURL(blob);
+
+            const link = document.createElement("a");
+
+            link.href = url;
+
+            link.download = "menu.png";
+
+            document.body.appendChild(link);
+
+            link.click();
+
+            document.body.removeChild(link);
+
+            setTimeout(() => {
+
+                URL.revokeObjectURL(url);
+
+            }, 1000);
+
+        }, "image/png");
+
+    } catch (error) {
 
         console.error("Error generando PNG:", error);
 
         alert("No fue posible generar la imagen.");
 
-    });
+    }
 }
 
 /* =========================================================
