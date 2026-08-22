@@ -753,8 +753,8 @@ body {
 
     transform: translateY(-50%);
 
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
 
     object-fit: contain;
         border-radius: 50%;
@@ -789,8 +789,8 @@ body {
 
     top: -13px;
 
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
 
     border-radius: 50%;
 
