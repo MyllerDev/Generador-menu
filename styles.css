@@ -10,8 +10,8 @@
 
 :root {
 
-    --accent: #ff6f73;
-    --accent-dark: #ef565c;
+    --accent: #f9050e;
+    --accent-dark: #ff0008;
     --accent-light: #fff0f0;
 
     --black: #111111;
@@ -369,7 +369,7 @@ body {
 
     grid-template-columns: 1fr 1fr;
 
-    gap: 8px;
+    gap: 18px;
 }
 
 .price-input {
@@ -707,15 +707,15 @@ body {
     position: relative;
     overflow: hidden;
 
-    border-right: 1px dashed #999;
+    border-right: 1px dashed #b98663;
     border-bottom: 1px dashed #999;
 
     background-image:
         linear-gradient(
-            rgba(255, 255, 255, 0.777),
-            rgba(255, 255, 255, 0.999)
+            rgba(255, 255, 255, 0.118),
+            rgba(255, 209, 184, 0.408)
         ),
-        url("images/fondo-menu.jpg");
+        url("images/image.png");
 
     background-size: cover;
     background-position: center;
@@ -749,12 +749,12 @@ body {
     position: absolute;
 
     left: 0;
-    top: 60%;
+    top: 80%;
 
     transform: translateY(-50%);
 
-    width: 65px;
-    height: 65px;
+    width: 100px;
+    height: 100px;
 
     object-fit: contain;
         border-radius: 50%;
@@ -787,16 +787,16 @@ body {
 
     right: -2px;
 
-    top: -5px;
+    top: -13px;
 
-    width: 64px;
-    height: 64px;
+    width: 100px;
+    height: 100px;
 
     border-radius: 50%;
 
     background: var(--accent);
 
-    color: #000;
+    color: #ffffff;
 
     font-weight: 1000;
 
@@ -991,7 +991,7 @@ body {
 
     /* margin-top: auto; */
 
-    padding-top: 2px;
+    padding-top: 0px;
 }
 
 .prices > div {
@@ -1002,23 +1002,22 @@ body {
 
     justify-content: space-between;
 
-    gap: 4px;
+    gap: 1px !important;
 
-    margin-top: 2px;
 }
 
 .prices span {
 
-    color: #e26350;
+    color: #ff2200;
 
-    font-size: 10px;
+    font-size: 13px;
 
-    font-weight: 900;
+    font-weight: 900 !important;
 }
 
 .prices strong {
 
-    font-size: 12px;
+    font-size: 15px;
 
     white-space: nowrap;
 }
