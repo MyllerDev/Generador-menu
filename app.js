@@ -1666,47 +1666,160 @@ function clearForm() {
 async function generatePDF() {
 
     const button =
-        document.querySelector(
-            ".pdf-btn"
-        );
-
+        document.querySelector(".pdf-btn");
 
     const originalText =
         button.innerHTML;
 
-
     button.innerHTML =
         "Generando PDF...";
-
 
     button.disabled =
         true;
 
+    let container = null;
 
     try {
 
-        const element =
-            document.getElementById(
-                "menuSheet"
+        const original =
+            document.getElementById("menuSheet");
+
+        if (!original) {
+
+            throw new Error(
+                "No se encontró el menú."
             );
+
+        }
+
+
+        /*
+         * IMPORTANTE:
+         * Creamos una copia con tamaño FIJO.
+         *
+         * Esto evita que el responsive del celular,
+         * transform: scale(), media queries, etc.
+         * afecten el PDF.
+         */
+
+        const clone =
+            original.cloneNode(true);
+
+
+        container =
+            document.createElement("div");
+
+
+        container.style.position =
+            "fixed";
+
+        container.style.left =
+            "-10000px";
+
+        container.style.top =
+            "0";
+
+        container.style.width =
+            "794px";
+
+        container.style.height =
+            "1123px";
+
+        container.style.background =
+            "#ffffff";
+
+        container.style.overflow =
+            "hidden";
+
+        container.style.zIndex =
+            "-1";
+
+
+        /*
+         * Eliminamos cualquier transformación
+         * que pueda venir del responsive.
+         */
+
+        clone.style.transform =
+            "none";
+
+        clone.style.transformOrigin =
+            "top left";
+
+        clone.style.width =
+            "794px";
+
+        clone.style.height =
+            "1123px";
+
+        clone.style.margin =
+            "0";
+
+        clone.style.position =
+            "relative";
+
+
+        container.appendChild(
+            clone
+        );
+
+        document.body.appendChild(
+            container
+        );
+
+
+        /*
+         * Esperar para que imágenes,
+         * fuentes y estilos terminen
+         * de renderizarse.
+         */
+
+        await new Promise(
+            resolve =>
+                setTimeout(
+                    resolve,
+                    300
+                )
+        );
 
 
         const canvas =
             await html2canvas(
-                element,
+                clone,
                 {
 
                     scale: 3,
 
                     useCORS: true,
 
+                    allowTaint: false,
+
                     backgroundColor:
                         "#ffffff",
 
-                    logging: false
+                    logging: false,
+
+                    width: 794,
+
+                    height: 1123,
+
+                    windowWidth: 794,
+
+                    windowHeight: 1123
 
                 }
             );
+
+
+        /*
+         * Eliminamos la copia temporal.
+         */
+
+        document.body.removeChild(
+            container
+        );
+
+        container = null;
 
 
         const imgData =
@@ -1717,8 +1830,7 @@ async function generatePDF() {
 
         const {
             jsPDF
-        } =
-            window.jspdf;
+        } = window.jspdf;
 
 
         const pdf =
@@ -1751,6 +1863,10 @@ async function generatePDF() {
         );
 
 
+        /*
+         * Nombre del archivo
+         */
+
         const restaurant =
             getValue(
                 "restaurantName"
@@ -1777,20 +1893,127 @@ async function generatePDF() {
                 .split("T")[0];
 
 
+        const fileName =
+            `${safeName}-menu-${date}.pdf`;
+
+
+        /*
+         * Convertimos el PDF a Blob.
+         */
+
+        const pdfBlob =
+            pdf.output("blob");
+
+
+        const file =
+            new File(
+                [pdfBlob],
+                fileName,
+                {
+                    type:
+                        "application/pdf"
+                }
+            );
+
+
+        /*
+         * En celulares:
+         * compartir SOLO el archivo.
+         *
+         * NO enviamos:
+         * - url
+         * - text
+         *
+         * Esto evita que Web Share agregue
+         * la URL de la página como comentario.
+         */
+
+        if (
+            navigator.share &&
+            navigator.canShare &&
+            navigator.canShare({
+                files: [file]
+            })
+        ) {
+
+            try {
+
+                await navigator.share({
+
+                    files: [file]
+
+                });
+
+                return;
+
+            } catch (shareError) {
+
+                /*
+                 * Si el usuario cancela,
+                 * simplemente no hacemos nada.
+                 */
+
+                if (
+                    shareError.name ===
+                    "AbortError"
+                ) {
+
+                    return;
+
+                }
+
+                console.log(
+                    "Compartir cancelado:",
+                    shareError
+                );
+
+            }
+
+        }
+
+
+        /*
+         * Si no se puede compartir directamente,
+         * descargar normalmente.
+         */
+
         pdf.save(
-            `${safeName}-menu-${date}.pdf`
+            fileName
         );
 
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "Error generando PDF:",
+            error
+        );
+
 
         alert(
             "No fue posible generar el PDF."
         );
 
+
     } finally {
+
+        /*
+         * Por seguridad, eliminar
+         * cualquier contenedor temporal
+         * que haya quedado.
+         */
+
+        if (
+            container &&
+            container.parentNode
+        ) {
+
+            container.parentNode.removeChild(
+                container
+            );
+
+        }
+
 
         button.innerHTML =
             originalText;
@@ -1801,7 +2024,6 @@ async function generatePDF() {
     }
 
 }
-
 
 /* =========================================================
    PNG
