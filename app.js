@@ -1658,7 +1658,6 @@ function clearForm() {
 
 }
 
-
 /* =========================================================
    PDF
 ========================================================= */
@@ -1674,8 +1673,7 @@ async function generatePDF() {
     button.innerHTML =
         "Generando PDF...";
 
-    button.disabled =
-        true;
+    button.disabled = true;
 
     let container = null;
 
@@ -1693,14 +1691,9 @@ async function generatePDF() {
         }
 
 
-        /*
-         * IMPORTANTE:
-         * Creamos una copia con tamaño FIJO.
-         *
-         * Esto evita que el responsive del celular,
-         * transform: scale(), media queries, etc.
-         * afecten el PDF.
-         */
+        /* =====================================================
+           CREAR COPIA DEL MENÚ
+        ===================================================== */
 
         const clone =
             original.cloneNode(true);
@@ -1731,26 +1724,22 @@ async function generatePDF() {
         container.style.overflow =
             "hidden";
 
-        container.style.zIndex =
-            "-1";
 
-
-        /*
-         * Eliminamos cualquier transformación
-         * que pueda venir del responsive.
-         */
-
-        clone.style.transform =
-            "none";
-
-        clone.style.transformOrigin =
-            "top left";
+        /* =====================================================
+           QUITAR CUALQUIER ESCALA DEL MOBILE
+        ===================================================== */
 
         clone.style.width =
             "794px";
 
         clone.style.height =
             "1123px";
+
+        clone.style.transform =
+            "none";
+
+        clone.style.transformOrigin =
+            "initial";
 
         clone.style.margin =
             "0";
@@ -1759,29 +1748,29 @@ async function generatePDF() {
             "relative";
 
 
-        container.appendChild(
-            clone
-        );
+        container.appendChild(clone);
 
-        document.body.appendChild(
-            container
-        );
+        document.body.appendChild(container);
 
 
-        /*
-         * Esperar para que imágenes,
-         * fuentes y estilos terminen
-         * de renderizarse.
-         */
+        /* =====================================================
+           ESPERAR A QUE EL NAVEGADOR RENDERICE
+        ===================================================== */
 
-        await new Promise(
-            resolve =>
-                setTimeout(
-                    resolve,
-                    300
-                )
-        );
+        await new Promise(resolve => {
 
+            requestAnimationFrame(() => {
+
+                requestAnimationFrame(resolve);
+
+            });
+
+        });
+
+
+        /* =====================================================
+           GENERAR CANVAS
+        ===================================================== */
 
         const canvas =
             await html2canvas(
@@ -1811,9 +1800,9 @@ async function generatePDF() {
             );
 
 
-        /*
-         * Eliminamos la copia temporal.
-         */
+        /* =====================================================
+           ELIMINAR COPIA
+        ===================================================== */
 
         document.body.removeChild(
             container
@@ -1821,6 +1810,10 @@ async function generatePDF() {
 
         container = null;
 
+
+        /* =====================================================
+           CREAR PDF A4
+        ===================================================== */
 
         const imgData =
             canvas.toDataURL(
@@ -1863,9 +1856,9 @@ async function generatePDF() {
         );
 
 
-        /*
-         * Nombre del archivo
-         */
+        /* =====================================================
+           NOMBRE DEL ARCHIVO
+        ===================================================== */
 
         const restaurant =
             getValue(
@@ -1893,92 +1886,8 @@ async function generatePDF() {
                 .split("T")[0];
 
 
-        const fileName =
-            `${safeName}-menu-${date}.pdf`;
-
-
-        /*
-         * Convertimos el PDF a Blob.
-         */
-
-        const pdfBlob =
-            pdf.output("blob");
-
-
-        const file =
-            new File(
-                [pdfBlob],
-                fileName,
-                {
-                    type:
-                        "application/pdf"
-                }
-            );
-
-
-        /*
-         * En celulares:
-         * compartir SOLO el archivo.
-         *
-         * NO enviamos:
-         * - url
-         * - text
-         *
-         * Esto evita que Web Share agregue
-         * la URL de la página como comentario.
-         */
-
-        if (
-            navigator.share &&
-            navigator.canShare &&
-            navigator.canShare({
-                files: [file]
-            })
-        ) {
-
-            try {
-
-                await navigator.share({
-
-                    files: [file]
-
-                });
-
-                return;
-
-            } catch (shareError) {
-
-                /*
-                 * Si el usuario cancela,
-                 * simplemente no hacemos nada.
-                 */
-
-                if (
-                    shareError.name ===
-                    "AbortError"
-                ) {
-
-                    return;
-
-                }
-
-                console.log(
-                    "Compartir cancelado:",
-                    shareError
-                );
-
-            }
-
-        }
-
-
-        /*
-         * Si no se puede compartir directamente,
-         * descargar normalmente.
-         */
-
         pdf.save(
-            fileName
+            `${safeName}-menu-${date}.pdf`
         );
 
 
@@ -1990,30 +1899,22 @@ async function generatePDF() {
         );
 
 
+        if (container &&
+            document.body.contains(container)) {
+
+            document.body.removeChild(
+                container
+            );
+
+        }
+
+
         alert(
             "No fue posible generar el PDF."
         );
 
 
     } finally {
-
-        /*
-         * Por seguridad, eliminar
-         * cualquier contenedor temporal
-         * que haya quedado.
-         */
-
-        if (
-            container &&
-            container.parentNode
-        ) {
-
-            container.parentNode.removeChild(
-                container
-            );
-
-        }
-
 
         button.innerHTML =
             originalText;
