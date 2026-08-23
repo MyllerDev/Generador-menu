@@ -1855,29 +1855,10 @@ async function generatePDF() {
             "FAST"
         );
 
-        /*
-         * Nombre del archivo
-         */
 
-        const restaurant =
-            getValue(
-                "restaurantName"
-            ) ||
-            "menu";
-
-
-        const safeName =
-            restaurant
-                .replace(
-                    /[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]/g,
-                    ""
-                )
-                .replace(
-                    /\s+/g,
-                    "-"
-                )
-                .toLowerCase();
-
+        /* =====================================================
+           NOMBRE DEL ARCHIVO
+        ===================================================== */
 
         const date =
             new Date()
@@ -1886,18 +1867,18 @@ async function generatePDF() {
 
 
         const fileName =
-            `${safeName}-menu-${date}.pdf`;
+            `Menu-del-dia-${date}.pdf`;
 
 
-        /*
-         * Convertimos el PDF a Blob.
-         */
+        /* =====================================================
+           CREAR ARCHIVO PDF
+        ===================================================== */
 
         const pdfBlob =
             pdf.output("blob");
 
 
-        const file =
+        const pdfFile =
             new File(
                 [pdfBlob],
                 fileName,
@@ -1908,70 +1889,75 @@ async function generatePDF() {
             );
 
 
-        /*
-         * En celulares:
-         * compartir SOLO el archivo.
-         *
-         * NO enviamos:
-         * - url
-         * - text
-         *
-         * Esto evita que Web Share agregue
-         * la URL de la página como comentario.
-         */
+        /* =====================================================
+           COMPARTIR PDF
+           SIN TEXTO NI URL
+        ===================================================== */
 
         if (
             navigator.share &&
             navigator.canShare &&
             navigator.canShare({
-                files: [file]
+                files: [pdfFile]
             })
         ) {
 
-            try {
+            await navigator.share({
 
-                await navigator.share({
+                files: [pdfFile]
 
-                    files: [file]
+            });
 
-                });
+        } else {
 
-                return;
+            /* =================================================
+               PC / NAVEGADORES SIN SHARE
+            ================================================= */
 
-            } catch (shareError) {
-
-                /*
-                 * Si el usuario cancela,
-                 * simplemente no hacemos nada.
-                 */
-
-                if (
-                    shareError.name ===
-                    "AbortError"
-                ) {
-
-                    return;
-
-                }
-
-                console.log(
-                    "Compartir cancelado:",
-                    shareError
+            const pdfUrl =
+                URL.createObjectURL(
+                    pdfBlob
                 );
 
-            }
+
+            const link =
+                document.createElement(
+                    "a"
+                );
+
+
+            link.href =
+                pdfUrl;
+
+            link.download =
+                fileName;
+
+            link.style.display =
+                "none";
+
+
+            document.body.appendChild(
+                link
+            );
+
+
+            link.click();
+
+
+            document.body.removeChild(
+                link
+            );
+
+
+            setTimeout(() => {
+
+                URL.revokeObjectURL(
+                    pdfUrl
+                );
+
+            }, 3000);
 
         }
-
-
-        /*
-         * Si no se puede compartir directamente,
-         * descargar normalmente.
-         */
-
-        pdf.save(
-            fileName
-        );
 
 
     } catch (error) {
@@ -1980,6 +1966,30 @@ async function generatePDF() {
             "Error generando PDF:",
             error
         );
+
+
+        if (
+            container &&
+            document.body.contains(container)
+        ) {
+
+            document.body.removeChild(
+                container
+            );
+
+        }
+
+
+        /* El usuario canceló el menú de compartir */
+
+        if (
+            error &&
+            error.name === "AbortError"
+        ) {
+
+            return;
+
+        }
 
 
         alert(
