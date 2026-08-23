@@ -1855,10 +1855,9 @@ async function generatePDF() {
             "FAST"
         );
 
-
-        /* =====================================================
-           NOMBRE DEL ARCHIVO
-        ===================================================== */
+        /*
+         * Nombre del archivo
+         */
 
         const restaurant =
             getValue(
@@ -1886,8 +1885,92 @@ async function generatePDF() {
                 .split("T")[0];
 
 
+        const fileName =
+            `${safeName}-menu-${date}.pdf`;
+
+
+        /*
+         * Convertimos el PDF a Blob.
+         */
+
+        const pdfBlob =
+            pdf.output("blob");
+
+
+        const file =
+            new File(
+                [pdfBlob],
+                fileName,
+                {
+                    type:
+                        "application/pdf"
+                }
+            );
+
+
+        /*
+         * En celulares:
+         * compartir SOLO el archivo.
+         *
+         * NO enviamos:
+         * - url
+         * - text
+         *
+         * Esto evita que Web Share agregue
+         * la URL de la página como comentario.
+         */
+
+        if (
+            navigator.share &&
+            navigator.canShare &&
+            navigator.canShare({
+                files: [file]
+            })
+        ) {
+
+            try {
+
+                await navigator.share({
+
+                    files: [file]
+
+                });
+
+                return;
+
+            } catch (shareError) {
+
+                /*
+                 * Si el usuario cancela,
+                 * simplemente no hacemos nada.
+                 */
+
+                if (
+                    shareError.name ===
+                    "AbortError"
+                ) {
+
+                    return;
+
+                }
+
+                console.log(
+                    "Compartir cancelado:",
+                    shareError
+                );
+
+            }
+
+        }
+
+
+        /*
+         * Si no se puede compartir directamente,
+         * descargar normalmente.
+         */
+
         pdf.save(
-            `${safeName}-menu-${date}.pdf`
+            fileName
         );
 
 
@@ -1899,20 +1982,9 @@ async function generatePDF() {
         );
 
 
-        if (container &&
-            document.body.contains(container)) {
-
-            document.body.removeChild(
-                container
-            );
-
-        }
-
-
         alert(
             "No fue posible generar el PDF."
         );
-
 
     } finally {
 
@@ -1925,7 +1997,6 @@ async function generatePDF() {
     }
 
 }
-
 /* =========================================================
    PNG
 ========================================================= */
