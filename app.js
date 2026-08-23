@@ -1726,7 +1726,7 @@ async function generatePDF() {
 
 
         /* =====================================================
-           QUITAR CUALQUIER ESCALA DEL MOBILE
+           QUITAR ESCALA MOBILE
         ===================================================== */
 
         clone.style.width =
@@ -1754,18 +1754,12 @@ async function generatePDF() {
 
 
         /* =====================================================
-           ESPERAR A QUE EL NAVEGADOR RENDERICE
+           ESPERAR RENDER
         ===================================================== */
 
-        await new Promise(resolve => {
-
-            requestAnimationFrame(() => {
-
-                requestAnimationFrame(resolve);
-
-            });
-
-        });
+        await new Promise(resolve =>
+            requestAnimationFrame(resolve)
+        );
 
 
         /* =====================================================
@@ -1777,7 +1771,8 @@ async function generatePDF() {
                 clone,
                 {
 
-                    scale: 3,
+                    /* Antes: 3 */
+                    scale: 2,
 
                     useCORS: true,
 
@@ -1812,12 +1807,13 @@ async function generatePDF() {
 
 
         /* =====================================================
-           CREAR PDF A4
+           CREAR PDF
         ===================================================== */
 
         const imgData =
             canvas.toDataURL(
-                "image/png"
+                "image/jpeg",
+                0.92
             );
 
 
@@ -1846,7 +1842,7 @@ async function generatePDF() {
 
         pdf.addImage(
             imgData,
-            "PNG",
+            "JPEG",
             0,
             0,
             210,
@@ -1871,7 +1867,7 @@ async function generatePDF() {
 
 
         /* =====================================================
-           CREAR ARCHIVO PDF
+           CREAR ARCHIVO
         ===================================================== */
 
         const pdfBlob =
@@ -1890,8 +1886,7 @@ async function generatePDF() {
 
 
         /* =====================================================
-           COMPARTIR PDF
-           SIN TEXTO NI URL
+           COMPARTIR
         ===================================================== */
 
         if (
@@ -1903,15 +1898,13 @@ async function generatePDF() {
         ) {
 
             await navigator.share({
-
                 files: [pdfFile]
-
             });
 
         } else {
 
             /* =================================================
-               PC / NAVEGADORES SIN SHARE
+               DESCARGA NORMAL
             ================================================= */
 
             const pdfUrl =
@@ -1940,9 +1933,7 @@ async function generatePDF() {
                 link
             );
 
-
             link.click();
-
 
             document.body.removeChild(
                 link
@@ -1955,7 +1946,7 @@ async function generatePDF() {
                     pdfUrl
                 );
 
-            }, 3000);
+            }, 2000);
 
         }
 
@@ -1979,8 +1970,6 @@ async function generatePDF() {
 
         }
 
-
-        /* El usuario canceló el menú de compartir */
 
         if (
             error &&
