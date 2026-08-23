@@ -1,7 +1,3 @@
-/* =========================================================
-   RESET
-========================================================= */
-
 * {
     margin: 0;
     padding: 0;
@@ -9,15 +5,12 @@
 }
 
 :root {
-
     --accent: #f9050e;
-    --accent-dark: #ff0008;
+    --accent-dark: #d90008;
     --accent-light: #fff0f0;
 
     --black: #111111;
-    --dark: #171717;
     --gray: #666666;
-    --light-gray: #eeeeee;
     --background: #f4f4f5;
     --white: #ffffff;
 
@@ -25,29 +18,14 @@
 }
 
 body {
-
-    font-family:
-        Inter,
-        Arial,
-        Helvetica,
-        sans-serif;
-
+    font-family: Inter, Arial, Helvetica, sans-serif;
     background: var(--background);
-
     color: var(--black);
-
     min-height: 100vh;
 }
 
-
-/* =========================================================
-   APP
-========================================================= */
-
 .app {
-
     display: flex;
-
     min-height: 100vh;
 }
 
@@ -57,139 +35,80 @@ body {
 ========================================================= */
 
 .sidebar {
-
     width: 390px;
-
-    background: #ffffff;
-
+    background: white;
     border-right: 1px solid #e6e6e6;
-
     display: flex;
-
     flex-direction: column;
-
     flex-shrink: 0;
 }
 
-
-/* =========================================================
-   BRAND
-========================================================= */
-
 .brand {
-
     padding: 25px 28px;
-
     border-bottom: 1px solid #eeeeee;
-
     display: flex;
-
     align-items: center;
-
     gap: 13px;
 }
 
 .brand-icon {
-
     width: 44px;
     height: 44px;
-
     background: var(--accent);
-
     border-radius: 12px;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     font-size: 21px;
 }
 
 .brand h1 {
-
     font-size: 20px;
-
     line-height: 1;
-
     font-weight: 800;
 }
 
 .brand span {
-
     font-size: 13px;
-
     color: #777;
-
     display: block;
-
     margin-top: 4px;
 }
 
-
-/* =========================================================
-   SIDEBAR CONTENT
-========================================================= */
-
 .sidebar-content {
-
     padding: 25px;
-
     overflow-y: auto;
-
     height: calc(100vh - 95px);
 }
 
-
-/* =========================================================
-   FORM SECTION
-========================================================= */
-
 .form-section {
-
     padding-bottom: 28px;
-
     margin-bottom: 28px;
-
     border-bottom: 1px solid #eeeeee;
 }
 
 .section-title {
-
     display: flex;
-
     align-items: center;
-
     gap: 9px;
-
     margin-bottom: 18px;
 }
 
 .section-title span {
-
     width: 28px;
     height: 28px;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     background: var(--accent-light);
-
     color: var(--accent-dark);
-
     border-radius: 7px;
-
     font-size: 11px;
-
     font-weight: 800;
 }
 
 .section-title h2 {
-
     font-size: 15px;
-
     font-weight: 800;
 }
 
@@ -199,216 +118,301 @@ body {
 ========================================================= */
 
 .field {
-
     margin-bottom: 13px;
 }
 
 .field label {
-
     display: block;
-
     font-size: 11px;
-
     font-weight: 700;
-
     color: #666;
-
     margin-bottom: 6px;
 }
 
-.field input {
-
+.field input,
+.field select {
     width: 100%;
-
     height: 42px;
-
     border: 1px solid #dddddd;
-
     background: #fafafa;
-
     border-radius: 8px;
-
     padding: 0 12px;
-
     outline: none;
-
     font-size: 13px;
-
-    color: #222;
-
+    color: #9d7777;
     transition: 0.2s;
 }
 
-.field input:focus {
-
+.field input:focus,
+.field select:focus {
     border-color: var(--accent);
-
     background: white;
-
-    box-shadow:
-        0 0 0 3px rgba(255, 111, 115, 0.1);
+    box-shadow: 0 0 0 3px rgba(249, 5, 14, 0.08);
 }
 
 
 /* =========================================================
-   DYNAMIC ITEMS
+   RECIPE PICKER
 ========================================================= */
 
-.dynamic-list {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 8px;
-
-    margin-bottom: 10px;
+.recipe-field {
+    margin-bottom: 15px;
 }
 
-.dynamic-item {
-
+.recipe-label {
     display: flex;
-
-    gap: 7px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
 }
 
-.dynamic-item input {
+.recipe-label strong {
+    font-size: 11px;
+    font-weight: 800;
+}
 
-    flex: 1;
+.recipe-label span {
+    font-size: 10px;
+    color: #999;
+}
 
-    height: 38px;
+.recipe-picker {
+    position: relative;
+}
+
+.recipe-search {
+    width: 100%;
+    height: 42px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fafafa;
+    padding: 0 35px 0 12px;
+    outline: none;
+    font-size: 12px;
+}
+
+.recipe-search:focus {
+    border-color: var(--accent);
+    background: white;
+}
+
+.recipe-search::placeholder {
+    color: #999;
+}
+
+.recipe-dropdown {
+    position: absolute;
+    z-index: 100;
+    left: 0;
+    right: 0;
+    top: calc(100% + 5px);
+
+    max-height: 210px;
+
+    background: white;
 
     border: 1px solid #ddd;
+    border-radius: 9px;
 
-    border-radius: 7px;
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.12);
 
-    padding: 0 10px;
+    overflow-y: auto;
 
-    font-size: 13px;
-
-    outline: none;
+    display: none;
 }
 
-.dynamic-item input:focus {
-
-    border-color: var(--accent);
+.recipe-dropdown.open {
+    display: block;
 }
 
-.remove-item {
-
-    width: 38px;
-    height: 38px;
-
-    border: 0;
-
-    border-radius: 7px;
-
-    background: #f4f4f4;
-
-    color: #888;
-
+.recipe-option {
+    padding: 9px 11px;
+    font-size: 12px;
     cursor: pointer;
-
-    font-size: 17px;
-
-    transition: 0.2s;
+    border-bottom: 1px solid #f2f2f2;
 }
 
-.remove-item:hover {
-
-    background: #ffe6e6;
-
-    color: #e54848;
+.recipe-option:last-child {
+    border-bottom: 0;
 }
 
+.recipe-option:hover {
+    background: var(--accent-light);
+    color: var(--accent-dark);
+}
 
-/* =========================================================
-   ADD BUTTON
-========================================================= */
+.recipe-option-empty {
+    padding: 12px;
+    text-align: center;
+    font-size: 11px;
+    color: #999;
+}
 
-.add-btn {
+.recipe-selected {
+    margin-top: 5px;
 
-    width: 100%;
+    min-height: 34px;
 
-    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #fff5f5;
+
+    border: 1px solid #ffd6d6;
+
+    border-radius: 7px;
+
+    padding: 7px 9px;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.recipe-selected.empty {
+    display: none;
+}
+
+.recipe-selected button {
+    border: 0;
+    background: transparent;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.recipe-selected button:hover {
+    color: var(--accent);
+}
+
+.recipe-actions {
+    display: flex;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+.recipe-new-btn {
+    flex: 1;
+
+    height: 32px;
 
     border: 1px dashed #ccc;
+    border-radius: 7px;
 
     background: white;
 
-    border-radius: 8px;
+    color: #666;
+
+    font-size: 10px;
+    font-weight: 800;
 
     cursor: pointer;
-
-    color: #555;
-
-    font-size: 12px;
-
-    font-weight: 700;
-
-    transition: 0.2s;
 }
 
-.add-btn:hover {
-
+.recipe-new-btn:hover {
     border-color: var(--accent);
-
-    color: var(--accent-dark);
-
+    color: var(--accent);
     background: var(--accent-light);
 }
 
 
 /* =========================================================
-   PRICE INPUT
+   MENU 2
+========================================================= */
+
+.dynamic-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.dynamic-item {
+    display: flex;
+    gap: 7px;
+}
+
+.dynamic-item input {
+    flex: 1;
+    height: 38px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    padding: 0 10px;
+    font-size: 13px;
+    outline: none;
+}
+
+.dynamic-item input:focus {
+    border-color: var(--accent);
+}
+
+.remove-item {
+    width: 38px;
+    height: 38px;
+    border: 0;
+    border-radius: 7px;
+    background: #f4f4f4;
+    color: #888;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.remove-item:hover {
+    background: #ffe6e6;
+    color: #e54848;
+}
+
+.add-btn {
+    width: 100%;
+    height: 38px;
+    border: 1px dashed #ccc;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #555;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.add-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent-dark);
+    background: var(--accent-light);
+}
+
+
+/* =========================================================
+   PRECIOS
 ========================================================= */
 
 .price-grid {
-
     display: grid;
-
     grid-template-columns: 1fr 1fr;
-
     gap: 18px;
 }
 
 .price-input {
-
     display: flex;
-
     align-items: center;
-
     height: 42px;
-
     border: 1px solid #ddd;
-
     border-radius: 8px;
-
     background: #fafafa;
-
     overflow: hidden;
 }
 
 .price-input span {
-
     padding-left: 10px;
-
     font-size: 13px;
-
     font-weight: 700;
-
     color: #777;
 }
 
 .price-input input {
-
     border: 0;
-
     background: transparent;
-
     padding-left: 5px;
-
-    box-shadow: none !important;
 }
 
 
@@ -417,194 +421,107 @@ body {
 ========================================================= */
 
 .actions {
-
     display: flex;
-
     flex-direction: column;
-
     gap: 9px;
-
     padding-bottom: 25px;
 }
 
 .actions button {
-
     width: 100%;
-
     height: 46px;
-
     border-radius: 9px;
-
     border: 0;
-
     cursor: pointer;
-
     font-size: 13px;
-
     font-weight: 800;
-
-    transition: 0.2s;
-}
-
-.example-btn {
-
-    background: #f3f3f3;
-
-    color: #444;
-}
-
-.example-btn:hover {
-
-    background: #e8e8e8;
 }
 
 .clear-btn {
-
     background: white;
-
     color: #777;
-
     border: 1px solid #ddd !important;
 }
 
 .clear-btn:hover {
-
     background: #fafafa;
-
-    color: #333;
 }
 
 .pdf-btn {
-
     background: var(--black);
-
     color: white;
-
-    box-shadow:
-        0 8px 20px rgba(0,0,0,0.15);
 }
 
 .pdf-btn:hover {
-
     background: var(--accent-dark);
-
     transform: translateY(-1px);
 }
 
-.pdf-btn span {
-
-    margin-right: 7px;
-
-    font-size: 17px;
-}
-
-/* =========================================================
-   PNG BUTTON
-========================================================= */
-
 .png-btn {
-
     background: var(--accent);
-
     color: white;
-
-    box-shadow:
-        0 8px 20px rgba(255, 111, 115, 0.2);
 }
 
 .png-btn:hover {
-
     background: var(--accent-dark);
-
     transform: translateY(-1px);
 }
 
 
 /* =========================================================
-   PREVIEW AREA
+   PREVIEW
 ========================================================= */
 
 .preview-area {
-
     flex: 1;
-
     min-width: 0;
-
     padding: 40px;
-
     overflow: auto;
 }
 
 .preview-header {
-
     max-width: 1000px;
-
     margin: 0 auto 30px;
-
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 }
 
 .eyebrow {
-
     font-size: 10px;
-
     font-weight: 900;
-
     letter-spacing: 2px;
-
     color: var(--accent-dark);
 }
 
 .preview-header h2 {
-
     margin-top: 4px;
-
     font-size: 25px;
-
     font-weight: 900;
 }
 
 .preview-header p {
-
     margin-top: 4px;
-
     color: #777;
-
     font-size: 13px;
 }
 
 .status {
-
     display: flex;
-
     align-items: center;
-
     gap: 7px;
-
     font-size: 11px;
-
     color: #777;
-
     background: white;
-
     padding: 9px 12px;
-
     border-radius: 20px;
-
     border: 1px solid #eee;
 }
 
 .status-dot {
-
     width: 7px;
     height: 7px;
-
     background: #39b54a;
-
     border-radius: 50%;
 }
 
@@ -614,32 +531,15 @@ body {
 ========================================================= */
 
 .paper-wrapper {
-
     width: 100%;
-
     display: flex;
-
     justify-content: center;
-
     padding-bottom: 50px;
 }
 
-
-/*
-   A4 ratio
-
-   210mm x 297mm
-
-   Here represented at approximately
-   794px x 1123px
-*/
-
 .menu-sheet {
-
     width: 794px;
-
     height: 1123px;
-
     background: white;
 
     box-shadow:
@@ -648,60 +548,11 @@ body {
     display: grid;
 
     grid-template-columns: 1fr 1fr;
-
     grid-template-rows: repeat(3, 1fr);
 
     position: relative;
-
     overflow: hidden;
 }
-
-
-/* =========================================================
-   MENU CARD
-========================================================= */
-
-.menu-card {
-
-    position: relative;
-
-    overflow: hidden;
-
-    border-right: 1px dashed #999;
-
-    border-bottom: 1px dashed #999;
-
-    background: #fff;
-}
-
-.menu-card:nth-child(2n) {
-
-    border-right: 0;
-}
-
-.menu-card:nth-child(n + 5) {
-
-    border-bottom: 0;
-}
-
-
-/* =========================================================
-   MENU INNER
-========================================================= */
-
-.menu-inner {
-
-    width: 100%;
-
-    height: 100%;
-
-    padding: 14px 15px 12px;
-
-    position: relative;
-
-    overflow: hidden;
-}
-
 
 .menu-card {
     position: relative;
@@ -712,8 +563,8 @@ body {
 
     background-image:
         linear-gradient(
-            rgba(255, 255, 255, 0.118),
-            rgba(255, 209, 184, 0.408)
+            rgba(255, 245, 227, 0.211),
+            rgba(255, 209, 184, 0)
         ),
         url("images/image.png");
 
@@ -722,304 +573,335 @@ body {
     background-repeat: no-repeat;
 }
 
-.menu-inner {
-    position: relative;
-    z-index: 1;
+.menu-card:nth-child(2n) {
+    border-right: 0;
 }
 
+.menu-card:nth-child(n + 5) {
+    border-bottom: 0;
+}
+
+
 /* =========================================================
-   TOP
+   MENU
 ========================================================= */
 
-.menu-top {
-
-    height: 48px;
-
+.menu-inner {
+    width: 100%;
+    height: 100%;
+    padding: 14px 15px 12px;
     position: relative;
+    overflow: hidden;
+}
 
+.menu-top {
+    height: 48px;
+    position: relative;
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 }
 
-
 .restaurant-logo {
     position: absolute;
-
     left: 0;
     top: 80%;
-
     transform: translateY(-50%);
 
     width: 90px;
     height: 90px;
 
     object-fit: contain;
-        border-radius: 50%;
-
-
-    display: block;
+    border-radius: 50%;
 }
 
 .restaurant-name {
-
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
+    font-family: Georgia, "Times New Roman", serif;
     font-weight: 900;
-
-    font-size: 20px;
-
+    font-size: 22px;
     text-align: center;
-
     max-width: 70%;
-
     line-height: 1;
 }
 
-.menu-badge {
-
+.menu-badge-image {
     position: absolute;
 
     right: -2px;
-
     top: -13px;
 
-    width: 90px;
-    height: 90px;
+    width: 100px;
+    height: 100px;
 
-    border-radius: 50%;
+    object-fit: contain;
 
-    background: var(--accent);
-
-    color: #ffffff;
-
-    font-weight: 1000;
-
-    font-size: 17px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    text-align: center;
-
-    line-height: 0.95;
+    display: block;
 }
-
-
-/* =========================================================
-   CONTACT
-========================================================= */
-
 .contact-info {
-
     text-align: center;
-
-    margin-top: 3px;
-
-    margin-bottom: 9px;
-}
-
-.service {
-
-    font-size: 9px;
-
-    font-weight: 900;
-
-    margin-bottom: 3px;
-}
-
-.phones {
-
-    font-size: 9px;
-
-    font-weight: 800;
-
+    margin-top: 2px;
     margin-bottom: 2px;
 }
 
-.address {
-
-    font-size: 8px;
-
-    font-weight: 800;
+.service {
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 0px;
 }
 
+.phones {
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 0px;
+}
 
-/* =========================================================
-   MENU GRID
-========================================================= */
+.address {
+    font-size: 11px;
+    font-weight: 700;
+}
 
 .menus-grid {
-
     display: grid;
-
     grid-template-columns: 1.4fr 1fr;
-
     gap: 9px;
-
     height: calc(100% - 78px);
 }
 
 .menu-one {
-
     min-width: 0;
-
     border-right: 1px solid #eee;
-
     padding-right: 8px;
 }
 
 .menu-two {
-
     min-width: 0;
-
     padding-left: 1px;
-
     display: flex;
-
     flex-direction: column;
 }
 
-
-/* =========================================================
-   MENU HEADINGS
-========================================================= */
-
 .menu-heading {
-
     background: var(--accent);
-
     height: 29px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     font-size: 11px;
-
     font-weight: 1000;
 
     margin-bottom: 7px;
+    color: white;
 }
 
-
-/* =========================================================
-   SECTIONS
-========================================================= */
-
 .menu-section {
-
-    margin-bottom: 6px;
+    margin-bottom: 1px;
 }
 
 .section-heading {
-
     font-size: 11px;
-
     font-weight: 1000;
-
-    margin-bottom: 2px;
+    margin-bottom: 1px;
 }
 
 .items {
-
     display: flex;
-
     flex-direction: column;
-
-    gap: 4px;
+    gap: 1px;
 }
+
+
 
 .menu-item {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 12px !important;
-    line-height: 0.7;
-    font-weight: 400;
+    font-size: 12.9px !important;
+    line-height: 0.9;
+    font-weight: 500;
+    font-style: italic;
     letter-spacing: 0.1px;
     overflow-wrap: break-word;
 }
 
+.menu-one .menu-item {
+    position: relative;
+    padding-left: 3px;
+}
 
-/* =========================================================
-   MENU 2
-========================================================= */
+.menu-one .menu-item::before {
+    content: "✦";
+    position: absolute;
+    left: -9px;
+    font-weight: 500;
+    font-style: normal;
+}
 
 .menu-two > .items {
-
     gap: 3px;
-
     padding: 4px 3px 0;
 }
 
 .menu-two .menu-item {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 12px !important;
-    line-height: 0.7;
-    font-weight: 400;
+    font-size: 14px !important;
+    line-height: 0.8;
+    font-weight: 600;
     letter-spacing: 0.1px;
-    padding-left: 7px;
+    padding-left: 10px;
     position: relative;
 }
 
 .menu-two .menu-item::before {
-
-    content: "•";
-
+    content: "✦";
     position: absolute;
-
-    left: 0;
-
+    left: -3px;
     font-weight: 900;
+}
+
+.prices {
+    padding-top: 2px;
+}
+
+.prices > div {
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1px !important;
+    line-height: 0.89;
+    margin-bottom: 1;
+}
+
+.prices span {
+    color: #ff2200;
+    font-size: 13.5px;
+    font-weight: 900 !important;
+    background: #fff7e7;
+    margin: 1px;
+    padding: 1px 2px;
+
+}
+
+.prices strong {
+    font-size: 13.5px;
+    white-space: nowrap;
+    background: #fff7e7;
+        padding: 1px 3px;
+
+
 }
 
 
 /* =========================================================
-   PRICES
+   MODAL
 ========================================================= */
 
-.prices {
+.modal-overlay {
+    position: fixed;
+    inset: 0;
 
-    /* margin-top: auto; */
-
-    padding-top: 0px;
-}
-
-.prices > div {
+    background: rgba(0,0,0,0.55);
 
     display: flex;
-
     align-items: center;
+    justify-content: center;
 
+    z-index: 1000;
+
+    padding: 20px;
+}
+
+.modal-overlay.hidden {
+    display: none;
+}
+
+.recipe-modal {
+    width: 100%;
+    max-width: 430px;
+
+    background: white;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.25);
+
+    overflow: hidden;
+}
+
+.modal-header {
+    padding: 20px 22px;
+
+    display: flex;
+    align-items: flex-start;
     justify-content: space-between;
 
-    gap: 1px !important;
-
+    border-bottom: 1px solid #eee;
 }
 
-.prices span {
-
-    color: #ff2200;
-
-    font-size: 13px;
-
-    font-weight: 900 !important;
+.modal-eyebrow {
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--accent);
 }
 
-.prices strong {
+.modal-header h2 {
+    font-size: 20px;
+    margin-top: 4px;
+}
 
-    font-size: 15px;
+.modal-close {
+    width: 32px;
+    height: 32px;
 
-    white-space: nowrap;
+    border: 0;
+    border-radius: 7px;
+
+    background: #f4f4f4;
+
+    font-size: 21px;
+    color: #777;
+
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 22px;
+}
+
+.modal-actions {
+    padding: 15px 22px;
+
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+
+    border-top: 1px solid #eee;
+}
+
+.modal-actions button {
+    height: 40px;
+    padding: 0 15px;
+
+    border-radius: 8px;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+.modal-cancel {
+    background: white;
+    border: 1px solid #ddd;
+    color: #666;
+}
+
+.modal-save {
+    background: var(--accent);
+    color: white;
+    border: 0;
 }
 
 
@@ -1030,83 +912,70 @@ body {
 @media (max-width: 1200px) {
 
     .sidebar {
-
         width: 340px;
     }
 
     .preview-area {
-
         padding: 25px;
     }
 
     .menu-sheet {
-
         transform-origin: top center;
-
         transform: scale(0.9);
-
         margin-bottom: -110px;
     }
 }
 
-
 @media (max-width: 900px) {
 
     .app {
-
         flex-direction: column;
     }
 
     .sidebar {
-
         width: 100%;
-
         border-right: 0;
-
         border-bottom: 1px solid #ddd;
     }
 
     .sidebar-content {
-
         height: auto;
-
         max-height: 70vh;
     }
 
     .preview-area {
-
         padding: 20px;
     }
 
     .preview-header {
-
         align-items: flex-start;
-
         gap: 15px;
-
         flex-direction: column;
     }
 }
 
-
 @media (max-width: 650px) {
 
     .menu-sheet {
-
         transform: scale(0.5);
-
         transform-origin: top left;
 
         margin-right: -397px;
-
         margin-bottom: -560px;
     }
 
     .paper-wrapper {
-
         justify-content: flex-start;
-
         overflow-x: auto;
+    }
+
+    .price-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .recipe-dropdown {
+        max-height: 180px;
     }
 }
 
@@ -1118,39 +987,30 @@ body {
 @media print {
 
     @page {
-
         size: A4 portrait;
-
         margin: 0;
     }
 
     body {
-
         background: white;
     }
 
     .sidebar,
     .preview-header {
-
         display: none !important;
     }
 
     .preview-area {
-
         padding: 0;
-
         overflow: visible;
     }
 
     .paper-wrapper {
-
         padding: 0;
     }
 
     .menu-sheet {
-
         width: 210mm;
-
         height: 297mm;
 
         box-shadow: none;

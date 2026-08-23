@@ -8,16 +8,15 @@
 
     <link rel="stylesheet" href="styles.css" />
 
-    <!-- Librerías para generar PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   </head>
 
   <body>
     <div class="app">
-      <!-- =========================
-         PANEL DE CONFIGURACIÓN
-    ========================== -->
+      <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
 
       <aside class="sidebar">
         <div class="brand">
@@ -31,6 +30,7 @@
 
         <div class="sidebar-content">
           <!-- DATOS RESTAURANTE -->
+
           <section class="form-section">
             <div class="section-title">
               <span>01</span>
@@ -39,6 +39,7 @@
 
             <div class="field">
               <label>Nombre</label>
+
               <input
                 type="text"
                 id="restaurantName"
@@ -49,6 +50,7 @@
 
             <div class="field">
               <label>Teléfono 1</label>
+
               <input
                 type="text"
                 id="phone1"
@@ -59,6 +61,7 @@
 
             <div class="field">
               <label>Teléfono 2</label>
+
               <input
                 type="text"
                 id="phone2"
@@ -69,6 +72,7 @@
 
             <div class="field">
               <label>Dirección</label>
+
               <input
                 type="text"
                 id="address"
@@ -79,6 +83,7 @@
 
             <div class="field">
               <label>Texto destacado</label>
+
               <input
                 type="text"
                 id="highlight"
@@ -88,57 +93,49 @@
             </div>
           </section>
 
-          <!-- ENTRADAS -->
+          <!-- =================================================
+                 ENTRADAS
+            ================================================== -->
+
           <section class="form-section">
             <div class="section-title">
               <span>02</span>
               <h2>Entradas</h2>
             </div>
 
-            <div id="entradasContainer" class="dynamic-list"></div>
-
-            <button type="button" class="add-btn" onclick="addItem('entradas')">
-              + Agregar entrada
-            </button>
+            <div id="entradasContainer"></div>
           </section>
 
-          <!-- PRINCIPIOS -->
+          <!-- =================================================
+                 PRINCIPIOS
+            ================================================== -->
+
           <section class="form-section">
             <div class="section-title">
               <span>03</span>
               <h2>Principios</h2>
             </div>
 
-            <div id="principiosContainer" class="dynamic-list"></div>
-
-            <button
-              type="button"
-              class="add-btn"
-              onclick="addItem('principios')"
-            >
-              + Agregar principio
-            </button>
+            <div id="principiosContainer"></div>
           </section>
 
-          <!-- PROTEÍNAS -->
+          <!-- =================================================
+                 PROTEÍNAS
+            ================================================== -->
+
           <section class="form-section">
             <div class="section-title">
               <span>04</span>
               <h2>Proteínas</h2>
             </div>
 
-            <div id="proteinasContainer" class="dynamic-list"></div>
-
-            <button
-              type="button"
-              class="add-btn"
-              onclick="addItem('proteinas')"
-            >
-              + Agregar proteína
-            </button>
+            <div id="proteinasContainer"></div>
           </section>
 
-          <!-- MENU 2 -->
+          <!-- =================================================
+                 MENU 2
+            ================================================== -->
+
           <section class="form-section">
             <div class="section-title">
               <span>05</span>
@@ -147,12 +144,15 @@
 
             <div id="menu2Container" class="dynamic-list"></div>
 
-            <button type="button" class="add-btn" onclick="addItem('menu2')">
+            <button type="button" class="add-btn" onclick="addMenu2Item()">
               + Agregar plato
             </button>
           </section>
 
-          <!-- PRECIOS -->
+          <!-- =================================================
+                 PRECIOS
+            ================================================== -->
+
           <section class="form-section">
             <div class="section-title">
               <span>06</span>
@@ -202,7 +202,9 @@
             </div>
           </section>
 
-          <!-- BOTONES -->
+          <!-- =================================================
+                 ACCIONES
+            ================================================== -->
 
           <div class="actions">
             <button class="clear-btn" onclick="clearForm()">Limpiar</button>
@@ -220,14 +222,14 @@
         </div>
       </aside>
 
-      <!-- =========================
-         ÁREA DE PREVISUALIZACIÓN
-    ========================== -->
+      <!-- =====================================================
+         PREVIEW
+    ====================================================== -->
 
       <main class="preview-area">
         <div class="preview-header">
           <div>
-            <span class="eyebrow">VISTA PREVIA</span>
+            <span class="eyebrow"> VISTA PREVIA </span>
 
             <h2>Hoja de impresión</h2>
 
@@ -236,39 +238,27 @@
 
           <div class="status">
             <span class="status-dot"></span>
+
             Actualización automática
           </div>
         </div>
 
-        <!-- HOJA A4 -->
-
         <div class="paper-wrapper">
           <div id="menuSheet" class="menu-sheet">
-            <!-- MENÚ 1 -->
             <div class="menu-card"></div>
-
-            <!-- MENÚ 2 -->
             <div class="menu-card"></div>
-
-            <!-- MENÚ 3 -->
             <div class="menu-card"></div>
-
-            <!-- MENÚ 4 -->
             <div class="menu-card"></div>
-
-            <!-- MENÚ 5 -->
             <div class="menu-card"></div>
-
-            <!-- MENÚ 6 -->
             <div class="menu-card"></div>
           </div>
         </div>
       </main>
     </div>
 
-    <!-- =========================
-     TEMPLATE DEL MENÚ
-========================== -->
+    <!-- =========================================================
+     TEMPLATE DEL MENU
+========================================================== -->
 
     <template id="menuTemplate">
       <div class="menu-inner">
@@ -281,7 +271,7 @@
 
           <div class="restaurant-name">EXQUISIT RESTAURANT</div>
 
-          <div class="menu-badge">MENÚ</div>
+          <img src="images/menu.png" alt="Menú" class="menu-badge-image" />
         </div>
 
         <div class="contact-info">
@@ -293,7 +283,7 @@
         </div>
 
         <div class="menus-grid">
-          <!-- MENÚ 1 -->
+          <!-- MENU 1 -->
 
           <div class="menu-one">
             <div class="menu-heading">MENÚ #1</div>
@@ -331,7 +321,7 @@
             </div>
           </div>
 
-          <!-- MENÚ 2 -->
+          <!-- MENU 2 -->
 
           <div class="menu-two">
             <div class="menu-heading">MENÚ #2</div>
@@ -355,6 +345,52 @@
         </div>
       </div>
     </template>
+
+    <!-- =========================================================
+     MODAL NUEVA RECETA
+========================================================== -->
+
+    <div id="recipeModal" class="modal-overlay hidden">
+      <div class="recipe-modal">
+        <div class="modal-header">
+          <div>
+            <span class="modal-eyebrow"> RECETAS </span>
+
+            <h2>Nueva receta</h2>
+          </div>
+
+          <button class="modal-close" onclick="closeRecipeModal()">×</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="field">
+            <label> Categoría </label>
+
+            <select id="newRecipeCategory"></select>
+          </div>
+
+          <div class="field">
+            <label> Nombre de la receta </label>
+
+            <input
+              type="text"
+              id="newRecipeName"
+              placeholder="Ej: Pechuga en salsa de champiñones"
+            />
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button class="modal-cancel" onclick="closeRecipeModal()">
+            Cancelar
+          </button>
+
+          <button class="modal-save" onclick="saveNewRecipe()">
+            Guardar receta
+          </button>
+        </div>
+      </div>
+    </div>
 
     <script src="app.js"></script>
   </body>
