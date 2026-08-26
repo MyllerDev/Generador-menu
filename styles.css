@@ -670,7 +670,7 @@ body {
 .menu-one {
     min-width: 0;
     border-right: 1px solid #eee;
-    padding-right: 2px;
+    padding-right: 1px;
 }
 
 .menu-two {
@@ -702,7 +702,7 @@ body {
 .section-heading {
     font-size: 14px;
     font-weight: 1000;
-    margin-bottom: -1px !important;
+    margin-bottom: 1px !important;
 }
 
 .items {
