@@ -563,8 +563,8 @@ body {
 
     background-image:
         linear-gradient(
-            rgba(255, 245, 227, 0.14),
-            rgba(255, 209, 184, 0)
+            rgba(255, 245, 227, 0.123),
+            rgba(255, 253, 251, 0.111)
         ),
         url("images/image.png");
 
@@ -670,7 +670,7 @@ body {
 .menu-one {
     min-width: 0;
     border-right: 1px solid #eee;
-    padding-right: 8px;
+    padding-right: 2px;
 }
 
 .menu-two {
@@ -691,7 +691,7 @@ body {
     font-size: 11px;
     font-weight: 1000;
 
-    margin-bottom: 7px;
+    margin-bottom: 5px;
     color: white;
 }
 
@@ -700,9 +700,9 @@ body {
 }
 
 .section-heading {
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 1000;
-    margin-bottom: 1px;
+    margin-bottom: -5px !important;
 }
 
 .items {
@@ -715,7 +715,7 @@ body {
 
 .menu-item {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 12.9px !important;
+    font-size: 13.6px !important;
     line-height: 0.9;
     font-weight: 500;
     font-style: italic;
