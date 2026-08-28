@@ -174,6 +174,7 @@ const defaultRecipes = {
     higado: [
         "Hígado encebollado"
     ]
+
 };
 
 
@@ -184,21 +185,31 @@ const defaultRecipes = {
 function loadRecipes() {
 
     const saved =
-        localStorage.getItem("restaurantRecipes");
+        localStorage.getItem(
+            "restaurantRecipes"
+        );
+
 
     if (!saved) {
 
-        return structuredClone(defaultRecipes);
+        return structuredClone(
+            defaultRecipes
+        );
 
     }
 
+
     try {
 
-        const parsed = JSON.parse(saved);
+        const parsed =
+            JSON.parse(saved);
+
 
         return {
 
-            sopas: parsed.sopas || [...defaultRecipes.sopas],
+            sopas:
+                parsed.sopas ||
+                [...defaultRecipes.sopas],
 
             complementos:
                 parsed.complementos ||
@@ -234,14 +245,17 @@ function loadRecipes() {
 
         console.error(error);
 
-        return structuredClone(defaultRecipes);
+        return structuredClone(
+            defaultRecipes
+        );
 
     }
 
 }
 
 
-let recipes = loadRecipes();
+let recipes =
+    loadRecipes();
 
 
 /* =========================================================
@@ -276,14 +290,40 @@ const data = {
     ],
 
     proteinas: {
+
         pechuga: "",
         piernaPernil: "",
         carne: "",
         cerdo: "",
         higado: ""
+
     },
 
-    menu2: []
+    menu2: [
+
+        {
+            id: 1,
+            value: "COSTILLAS BBQ"
+        },
+
+        {
+            id: 2,
+            value: "CHURRASCO"
+        },
+
+        {
+            id: 3,
+            value: "PECHUGA"
+        },
+
+        {
+            id: 4,
+            value: "CERDO"
+        }
+
+    ],
+
+    menu3: []
 
 };
 
@@ -297,15 +337,18 @@ const entradasContainer =
         "entradasContainer"
     );
 
+
 const principiosContainer =
     document.getElementById(
         "principiosContainer"
     );
 
+
 const proteinasContainer =
     document.getElementById(
         "proteinasContainer"
     );
+
 
 const menu2Container =
     document.getElementById(
@@ -313,27 +356,37 @@ const menu2Container =
     );
 
 
+const menu3Container =
+    document.getElementById(
+        "menu3Container"
+    );
+
+
 /* =========================================================
-   CATEGORIAS
+   CATEGORIAS DE PROTEINAS
 ========================================================= */
 
 const proteinLabels = {
 
     pechuga: "Pechuga",
 
-    piernaPernil: "Pierna pernil",
+    piernaPernil:
+        "Pierna pernil",
 
-    carne: "Carne",
+    carne:
+        "Carne",
 
-    cerdo: "Cerdo",
+    cerdo:
+        "Cerdo",
 
-    higado: "Hígado"
+    higado:
+        "Hígado"
 
 };
 
 
 /* =========================================================
-   CREAR SELECTOR DE RECETA
+   SELECTOR DE RECETA
 ========================================================= */
 
 function createRecipePicker({
@@ -346,28 +399,40 @@ function createRecipePicker({
 }) {
 
     const wrapper =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     wrapper.className =
         "recipe-field";
 
 
     const labelContainer =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     labelContainer.className =
         "recipe-label";
 
 
     const labelElement =
-        document.createElement("strong");
+        document.createElement(
+            "strong"
+        );
+
 
     labelElement.textContent =
         label;
 
 
     const categoryText =
-        document.createElement("span");
+        document.createElement(
+            "span"
+        );
+
 
     categoryText.textContent =
         `${recipes[category].length} opciones`;
@@ -377,60 +442,83 @@ function createRecipePicker({
         labelElement
     );
 
+
     labelContainer.appendChild(
         categoryText
     );
 
 
     const picker =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     picker.className =
         "recipe-picker";
 
 
     const search =
-        document.createElement("input");
+        document.createElement(
+            "input"
+        );
+
 
     search.type =
         "text";
 
+
     search.className =
         "recipe-search";
 
+
     search.placeholder =
         "🔎 Buscar receta...";
+
 
     search.autocomplete =
         "off";
 
 
     const dropdown =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     dropdown.className =
         "recipe-dropdown";
 
 
     const selected =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     selected.className =
         "recipe-selected";
 
 
     const selectedText =
-        document.createElement("span");
+        document.createElement(
+            "span"
+        );
 
 
     const remove =
-        document.createElement("button");
+        document.createElement(
+            "button"
+        );
+
 
     remove.type =
         "button";
 
+
     remove.innerHTML =
         "×";
+
 
     remove.title =
         "Quitar selección";
@@ -439,6 +527,7 @@ function createRecipePicker({
     selected.appendChild(
         selectedText
     );
+
 
     selected.appendChild(
         remove
@@ -462,65 +551,88 @@ function createRecipePicker({
                 );
 
 
-        dropdown.innerHTML = "";
+        dropdown.innerHTML =
+            "";
 
 
         if (!results.length) {
 
             const empty =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
+
 
             empty.className =
                 "recipe-option-empty";
 
+
             empty.textContent =
                 "No se encontraron recetas";
 
-            dropdown.appendChild(empty);
+
+            dropdown.appendChild(
+                empty
+            );
 
         } else {
 
-            results.forEach(recipe => {
+            results.forEach(
+                recipe => {
 
-                const option =
-                    document.createElement("div");
-
-                option.className =
-                    "recipe-option";
-
-                option.textContent =
-                    recipe;
-
-
-                option.addEventListener(
-                    "click",
-                    () => {
-
-                        onSelect(recipe);
-
-                        selectedText.textContent =
-                            recipe;
-
-                        selected.classList.remove(
-                            "empty"
+                    const option =
+                        document.createElement(
+                            "div"
                         );
 
-                        search.value =
-                            recipe;
 
-                        dropdown.classList.remove(
-                            "open"
-                        );
-
-                    }
-                );
+                    option.className =
+                        "recipe-option";
 
 
-                dropdown.appendChild(
-                    option
-                );
+                    option.textContent =
+                        recipe;
 
-            });
+
+                    option.addEventListener(
+                        "click",
+                        () => {
+
+                            onSelect(
+                                recipe
+                            );
+
+
+                            selectedText.textContent =
+                                recipe;
+
+
+                            selected.classList.remove(
+                                "empty"
+                            );
+
+
+                            search.value =
+                                recipe;
+
+
+                            dropdown.classList.remove(
+                                "open"
+                            );
+
+
+                            updatePreview();
+
+                        }
+                    );
+
+
+                    dropdown.appendChild(
+                        option
+                    );
+
+                }
+            );
 
         }
 
@@ -572,38 +684,62 @@ function createRecipePicker({
                 "open"
             );
 
+            updatePreview();
+
         }
     );
 
 
-    picker.appendChild(search);
+    picker.appendChild(
+        search
+    );
 
-    picker.appendChild(dropdown);
 
-    wrapper.appendChild(labelContainer);
+    picker.appendChild(
+        dropdown
+    );
 
-    wrapper.appendChild(picker);
 
-    wrapper.appendChild(selected);
+    wrapper.appendChild(
+        labelContainer
+    );
+
+
+    wrapper.appendChild(
+        picker
+    );
+
+
+    wrapper.appendChild(
+        selected
+    );
 
 
     /* NUEVA RECETA */
 
     const actions =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     actions.className =
         "recipe-actions";
 
 
     const newButton =
-        document.createElement("button");
+        document.createElement(
+            "button"
+        );
+
 
     newButton.type =
         "button";
 
+
     newButton.className =
         "recipe-new-btn";
+
 
     newButton.textContent =
         "+ Nueva receta";
@@ -625,6 +761,7 @@ function createRecipePicker({
     actions.appendChild(
         newButton
     );
+
 
     wrapper.appendChild(
         actions
@@ -665,58 +802,70 @@ function createRecipePicker({
 
 function renderEntradas() {
 
-    entradasContainer.innerHTML = "";
+    entradasContainer.innerHTML =
+        "";
 
 
-    const soupPicker =
-        createRecipePicker({
+    data.entradas.forEach(
+        (value, index) => {
 
-            category: "sopas",
-
-            label: "Entrada 1 · Sopa",
-
-            value: data.entradas[0],
-
-            onSelect: value => {
-
-                data.entradas[0] =
-                    value;
-
-                updatePreview();
-
-            }
-
-        });
+            const isSoup =
+                index === 0;
 
 
-    const secondPicker =
-        createRecipePicker({
+            const picker =
+                createRecipePicker({
 
-            category: "complementos",
+                    category:
+                        isSoup
+                            ? "sopas"
+                            : "complementos",
 
-            label: "Entrada 2",
+                    label:
+                        isSoup
+                            ? "Entrada 1 · Sopa"
+                            : `Entrada ${index + 1}`,
 
-            value: data.entradas[1],
+                    value:
+                        value,
 
-            onSelect: value => {
+                    onSelect:
+                        selectedValue => {
 
-                data.entradas[1] =
-                    value;
+                            data.entradas[index] =
+                                selectedValue;
 
-                updatePreview();
+                            updatePreview();
 
-            }
+                        }
 
-        });
+                });
 
 
-    entradasContainer.appendChild(
-        soupPicker
+            entradasContainer.appendChild(
+                picker
+            );
+
+        }
     );
 
-    entradasContainer.appendChild(
-        secondPicker
+}
+
+
+/* =========================================================
+   AGREGAR ENTRADA
+========================================================= */
+
+function addEntrada() {
+
+    data.entradas.push(
+        ""
     );
+
+
+    renderEntradas();
+
+    updatePreview();
 
 }
 
@@ -727,7 +876,8 @@ function renderEntradas() {
 
 function renderPrincipios() {
 
-    principiosContainer.innerHTML = "";
+    principiosContainer.innerHTML =
+        "";
 
 
     data.principios.forEach(
@@ -736,21 +886,24 @@ function renderPrincipios() {
             const picker =
                 createRecipePicker({
 
-                    category: "principios",
+                    category:
+                        "principios",
 
                     label:
                         `Principio ${index + 1}`,
 
-                    value: value,
+                    value:
+                        value,
 
-                    onSelect: selectedValue => {
+                    onSelect:
+                        selectedValue => {
 
-                        data.principios[index] =
-                            selectedValue;
+                            data.principios[index] =
+                                selectedValue;
 
-                        updatePreview();
+                            updatePreview();
 
-                    }
+                        }
 
                 });
 
@@ -766,46 +919,121 @@ function renderPrincipios() {
 
 
 /* =========================================================
+   AGREGAR PRINCIPIO
+========================================================= */
+
+function addPrincipio() {
+
+    data.principios.push(
+        ""
+    );
+
+
+    renderPrincipios();
+
+    updatePreview();
+
+}
+
+
+/* =========================================================
    PROTEINAS
 ========================================================= */
 
 function renderProteinas() {
 
-    proteinasContainer.innerHTML = "";
+    proteinasContainer.innerHTML =
+        "";
 
 
     Object.keys(
         data.proteinas
-    ).forEach(category => {
+    ).forEach(
+        category => {
 
-        const picker =
-            createRecipePicker({
+            const picker =
+                createRecipePicker({
 
-                category: category,
+                    category:
+                        category,
 
-                label:
-                    `Proteína · ${proteinLabels[category]}`,
+                    label:
+                        `Proteína · ${proteinLabels[category]}`,
 
-                value:
-                    data.proteinas[category],
+                    value:
+                        data.proteinas[category],
 
-                onSelect: selectedValue => {
+                    onSelect:
+                        selectedValue => {
 
-                    data.proteinas[category] =
-                        selectedValue;
+                            data.proteinas[category] =
+                                selectedValue;
 
-                    updatePreview();
+                            updatePreview();
 
-                }
+                        }
 
-            });
+                });
 
 
-        proteinasContainer.appendChild(
-            picker
+            proteinasContainer.appendChild(
+                picker
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   AGREGAR PROTEINA
+========================================================= */
+
+function addProteina() {
+
+    const newCategory =
+        `extra_${Date.now()}`;
+
+
+    recipes[newCategory] =
+        [];
+
+
+    const name =
+        prompt(
+            "Nombre de la nueva proteína:"
         );
 
-    });
+
+    if (!name) {
+
+        delete recipes[newCategory];
+
+        return;
+
+    }
+
+
+    recipes[newCategory] =
+        [];
+
+
+    const currentProteinas =
+        data.proteinas;
+
+
+    currentProteinas[newCategory] =
+        "";
+
+
+    proteinLabels[newCategory] =
+        name;
+
+
+    renderProteinas();
+
+    updatePreview();
 
 }
 
@@ -814,9 +1042,12 @@ function renderProteinas() {
    MODAL NUEVA RECETA
 ========================================================= */
 
-let modalCategory = null;
+let modalCategory =
+    null;
 
-let modalCallback = null;
+
+let modalCallback =
+    null;
 
 
 function openRecipeModal(
@@ -826,6 +1057,7 @@ function openRecipeModal(
 
     modalCategory =
         category;
+
 
     modalCallback =
         callback;
@@ -837,19 +1069,23 @@ function openRecipeModal(
         );
 
 
-    select.innerHTML = "";
+    select.innerHTML =
+        "";
 
 
     const categories = {
 
-        sopas: "Entrada · Sopas",
+        sopas:
+            "Entrada · Sopas",
 
         complementos:
             "Entrada · Fruta / Gelatina / Arroz con leche / Salpicón",
 
-        principios: "Principios",
+        principios:
+            "Principios",
 
-        pechuga: "Proteína · Pechuga",
+        pechuga:
+            "Proteína · Pechuga",
 
         piernaPernil:
             "Proteína · Pierna pernil",
@@ -866,43 +1102,47 @@ function openRecipeModal(
     };
 
 
-    Object.entries(categories)
-        .forEach(
-            ([key, text]) => {
+    Object.entries(
+        categories
+    ).forEach(
+        ([key, text]) => {
 
-                const option =
-                    document.createElement(
-                        "option"
-                    );
-
-                option.value =
-                    key;
-
-                option.textContent =
-                    text;
-
-
-                if (
-                    key === category
-                ) {
-
-                    option.selected =
-                        true;
-
-                }
-
-
-                select.appendChild(
-                    option
+            const option =
+                document.createElement(
+                    "option"
                 );
 
+
+            option.value =
+                key;
+
+
+            option.textContent =
+                text;
+
+
+            if (
+                key === category
+            ) {
+
+                option.selected =
+                    true;
+
             }
-        );
+
+
+            select.appendChild(
+                option
+            );
+
+        }
+    );
 
 
     document.getElementById(
         "newRecipeName"
-    ).value = "";
+    ).value =
+        "";
 
 
     document.getElementById(
@@ -912,13 +1152,16 @@ function openRecipeModal(
     );
 
 
-    setTimeout(() => {
+    setTimeout(
+        () => {
 
-        document.getElementById(
-            "newRecipeName"
-        ).focus();
+            document.getElementById(
+                "newRecipeName"
+            ).focus();
 
-    }, 100);
+        },
+        100
+    );
 
 }
 
@@ -931,8 +1174,10 @@ function closeRecipeModal() {
         "hidden"
     );
 
+
     modalCategory =
         null;
+
 
     modalCallback =
         null;
@@ -949,13 +1194,16 @@ function saveNewRecipe() {
     const name =
         document.getElementById(
             "newRecipeName"
-        ).value.trim();
+        )
+        .value
+        .trim();
 
 
     const category =
         document.getElementById(
             "newRecipeCategory"
-        ).value;
+        )
+        .value;
 
 
     if (!name) {
@@ -971,9 +1219,10 @@ function saveNewRecipe() {
 
     const exists =
         recipes[category]
-            .some(recipe =>
-                recipe.toLowerCase() ===
-                name.toLowerCase()
+            .some(
+                recipe =>
+                    recipe.toLowerCase() ===
+                    name.toLowerCase()
             );
 
 
@@ -999,7 +1248,8 @@ function saveNewRecipe() {
                 b,
                 "es",
                 {
-                    sensitivity: "base"
+                    sensitivity:
+                        "base"
                 }
             )
     );
@@ -1008,18 +1258,14 @@ function saveNewRecipe() {
     saveRecipes();
 
 
-    /*
-     * Si la receta se creó desde
-     * un campo específico,
-     * seleccionarla automáticamente.
-     */
-
     if (
         modalCallback &&
         category === modalCategory
     ) {
 
-        modalCallback(name);
+        modalCallback(
+            name
+        );
 
     }
 
@@ -1058,12 +1304,14 @@ function addMenu2Item(
 ) {
 
     data.menu2.push({
+
         id:
             Date.now() +
             Math.random(),
 
         value:
             value
+
     });
 
 
@@ -1076,7 +1324,8 @@ function addMenu2Item(
 
 function renderMenu2() {
 
-    menu2Container.innerHTML = "";
+    menu2Container.innerHTML =
+        "";
 
 
     data.menu2.forEach(
@@ -1087,6 +1336,7 @@ function renderMenu2() {
                     "div"
                 );
 
+
             row.className =
                 "dynamic-item";
 
@@ -1096,11 +1346,14 @@ function renderMenu2() {
                     "input"
                 );
 
+
             input.type =
                 "text";
 
+
             input.placeholder =
                 "Ej: Churrasco";
+
 
             input.value =
                 item.value;
@@ -1124,11 +1377,14 @@ function renderMenu2() {
                     "button"
                 );
 
+
             remove.type =
                 "button";
 
+
             remove.className =
                 "remove-item";
+
 
             remove.innerHTML =
                 "×";
@@ -1151,11 +1407,19 @@ function renderMenu2() {
             );
 
 
-            row.appendChild(input);
+            row.appendChild(
+                input
+            );
 
-            row.appendChild(remove);
 
-            menu2Container.appendChild(row);
+            row.appendChild(
+                remove
+            );
+
+
+            menu2Container.appendChild(
+                row
+            );
 
         }
     );
@@ -1164,7 +1428,202 @@ function renderMenu2() {
 
 
 /* =========================================================
-   CREAR LISTA HTML
+   MENU 3
+========================================================= */
+
+function addMenu3Item(
+    value = ""
+) {
+
+    data.menu3.push({
+
+        id:
+            Date.now() +
+            Math.random(),
+
+        value:
+            value
+
+    });
+
+
+    renderMenu3();
+
+    updatePreview();
+
+}
+
+
+function renderMenu3() {
+
+    menu3Container.innerHTML =
+        "";
+
+
+    data.menu3.forEach(
+        (item, index) => {
+
+            const row =
+                document.createElement(
+                    "div"
+                );
+
+
+            row.className =
+                "dynamic-item";
+
+
+            const input =
+                document.createElement(
+                    "input"
+                );
+
+
+            input.type =
+                "text";
+
+
+            input.placeholder =
+                "Ej: Especial de carne";
+
+
+            input.value =
+                item.value;
+
+
+            input.addEventListener(
+                "input",
+                function () {
+
+                    data.menu3[index].value =
+                        this.value;
+
+                    updatePreview();
+
+                }
+            );
+
+
+            const remove =
+                document.createElement(
+                    "button"
+                );
+
+
+            remove.type =
+                "button";
+
+
+            remove.className =
+                "remove-item";
+
+
+            remove.innerHTML =
+                "×";
+
+
+            remove.addEventListener(
+                "click",
+                () => {
+
+                    data.menu3.splice(
+                        index,
+                        1
+                    );
+
+                    renderMenu3();
+
+                    updatePreview();
+
+                }
+            );
+
+
+            row.appendChild(
+                input
+            );
+
+
+            row.appendChild(
+                remove
+            );
+
+
+            menu3Container.appendChild(
+                row
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   ACTIVAR / DESACTIVAR MENU 3
+========================================================= */
+
+function toggleMenu3() {
+
+    const enabled =
+        document.getElementById(
+            "enableMenu3"
+        ).checked;
+
+
+    const section =
+        document.getElementById(
+            "menu3Section"
+        );
+
+
+    const priceGroup =
+        document.getElementById(
+            "menu3PriceGroup"
+        );
+
+
+    if (enabled) {
+
+        section.classList.remove(
+            "hidden"
+        );
+
+
+        priceGroup.classList.remove(
+            "hidden"
+        );
+
+
+        if (
+            data.menu3.length === 0
+        ) {
+
+            addMenu3Item();
+
+        }
+
+    } else {
+
+        section.classList.add(
+            "hidden"
+        );
+
+
+        priceGroup.classList.add(
+            "hidden"
+        );
+
+    }
+
+
+    updatePreview();
+
+}
+
+
+/* =========================================================
+   CREAR HTML DE ITEMS
 ========================================================= */
 
 function createItemsHTML(
@@ -1173,15 +1632,17 @@ function createItemsHTML(
 
     return items
         .filter(Boolean)
-        .map(item => {
+        .map(
+            item => {
 
-            return `
-                <div class="menu-item">
-                    ${escapeHTML(item)}
-                </div>
-            `;
+                return `
+                    <div class="menu-item">
+                        ${escapeHTML(item)}
+                    </div>
+                `;
 
-        })
+            }
+        )
         .join("");
 
 }
@@ -1191,13 +1652,19 @@ function createItemsHTML(
    ESCAPAR HTML
 ========================================================= */
 
-function escapeHTML(text) {
+function escapeHTML(
+    text
+) {
 
     const div =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     div.textContent =
         text;
+
 
     return div.innerHTML;
 
@@ -1208,15 +1675,22 @@ function escapeHTML(text) {
    PRECIO
 ========================================================= */
 
-function formatPrice(value) {
+function formatPrice(
+    value
+) {
 
     if (!value) {
+
         return "$0";
+
     }
+
 
     return "$" +
         Number(value)
-            .toLocaleString("es-CO");
+            .toLocaleString(
+                "es-CO"
+            );
 
 }
 
@@ -1225,10 +1699,15 @@ function formatPrice(value) {
    OBTENER VALOR
 ========================================================= */
 
-function getValue(id) {
+function getValue(
+    id
+) {
 
     const element =
-        document.getElementById(id);
+        document.getElementById(
+            id
+        );
+
 
     return element
         ? element.value.trim()
@@ -1249,6 +1728,11 @@ function updatePreview() {
         );
 
 
+    if (!sheet) {
+        return;
+    }
+
+
     const cards =
         sheet.querySelectorAll(
             ".menu-card"
@@ -1262,27 +1746,19 @@ function updatePreview() {
         "RESTAURANTE";
 
 
-    const phone1 =
-        getValue("phone1");
-
-    const phone2 =
-        getValue("phone2");
-
-    const address =
-        getValue("address");
-
-    const highlight =
-        getValue("highlight") ||
-        "MENÚ";
-
-
     const phones =
         [
-            phone1,
-            phone2
+            getValue("phone1"),
+            getValue("phone2")
         ]
         .filter(Boolean)
         .join(" - ");
+
+
+    const address =
+        getValue(
+            "address"
+        );
 
 
     const priceSalon1 =
@@ -1317,139 +1793,205 @@ function updatePreview() {
         );
 
 
-    const proteinList = [
-
-        data.proteinas.pechuga,
-
-        data.proteinas.piernaPernil,
-
-        data.proteinas.carne,
-
-        data.proteinas.cerdo,
-
-        data.proteinas.higado
-
-    ];
-
-
-    cards.forEach(card => {
-
-        card.innerHTML = "";
-
-
-        const template =
-            document
-                .getElementById(
-                    "menuTemplate"
-                )
-                .content
-                .cloneNode(true);
-
-
-        template
-            .querySelector(
-                ".restaurant-name"
+    const priceSalon3 =
+        formatPrice(
+            getValue(
+                "priceSalon3"
             )
-            .textContent =
-            restaurantName;
-
-
-        template
-            .querySelector(
-                ".phones"
-            )
-            .textContent =
-            phones;
-
-
-        template
-            .querySelector(
-                ".address"
-            )
-            .textContent =
-            address;
-
-
-        template
-            .querySelector(
-                ".entradas-preview"
-            )
-            .innerHTML =
-            createItemsHTML(
-                data.entradas
-            );
-
-
-        template
-            .querySelector(
-                ".principios-preview"
-            )
-            .innerHTML =
-            createItemsHTML(
-                data.principios
-            );
-
-
-        template
-            .querySelector(
-                ".proteinas-preview"
-            )
-            .innerHTML =
-            createItemsHTML(
-                proteinList
-            );
-
-
-        template
-            .querySelector(
-                ".menu2-preview"
-            )
-            .innerHTML =
-            createItemsHTML(
-                data.menu2.map(
-                    item =>
-                        item.value
-                )
-            );
-
-
-        template
-            .querySelector(
-                ".price-salon-1"
-            )
-            .textContent =
-            priceSalon1;
-
-
-        template
-            .querySelector(
-                ".price-delivery-1"
-            )
-            .textContent =
-            priceDelivery1;
-
-
-        template
-            .querySelector(
-                ".price-salon-2"
-            )
-            .textContent =
-            priceSalon2;
-
-
-        template
-            .querySelector(
-                ".price-delivery-2"
-            )
-            .textContent =
-            priceDelivery2;
-
-
-        card.appendChild(
-            template
         );
 
-    });
+
+    const priceDelivery3 =
+        formatPrice(
+            getValue(
+                "priceDelivery3"
+            )
+        );
+
+
+    const proteinList =
+        Object.values(
+            data.proteinas
+        );
+
+
+    const menu3Enabled =
+        document.getElementById(
+            "enableMenu3"
+        )?.checked || false;
+
+
+    cards.forEach(
+        card => {
+
+            card.innerHTML =
+                "";
+
+
+            const template =
+                document
+                    .getElementById(
+                        "menuTemplate"
+                    )
+                    .content
+                    .cloneNode(true);
+
+
+            template
+                .querySelector(
+                    ".restaurant-name"
+                )
+                .textContent =
+                restaurantName;
+
+
+            template
+                .querySelector(
+                    ".phones"
+                )
+                .textContent =
+                phones;
+
+
+            template
+                .querySelector(
+                    ".address"
+                )
+                .textContent =
+                address;
+
+
+            template
+                .querySelector(
+                    ".entradas-preview"
+                )
+                .innerHTML =
+                createItemsHTML(
+                    data.entradas
+                );
+
+
+            template
+                .querySelector(
+                    ".principios-preview"
+                )
+                .innerHTML =
+                createItemsHTML(
+                    data.principios
+                );
+
+
+            template
+                .querySelector(
+                    ".proteinas-preview"
+                )
+                .innerHTML =
+                createItemsHTML(
+                    proteinList
+                );
+
+
+            template
+                .querySelector(
+                    ".menu2-preview"
+                )
+                .innerHTML =
+                createItemsHTML(
+                    data.menu2.map(
+                        item =>
+                            item.value
+                    )
+                );
+
+
+            template
+                .querySelector(
+                    ".menu3-preview"
+                )
+                .innerHTML =
+                createItemsHTML(
+                    data.menu3.map(
+                        item =>
+                            item.value
+                    )
+                );
+
+
+            template
+                .querySelector(
+                    ".price-salon-1"
+                )
+                .textContent =
+                priceSalon1;
+
+
+            template
+                .querySelector(
+                    ".price-delivery-1"
+                )
+                .textContent =
+                priceDelivery1;
+
+
+            template
+                .querySelector(
+                    ".price-salon-2"
+                )
+                .textContent =
+                priceSalon2;
+
+
+            template
+                .querySelector(
+                    ".price-delivery-2"
+                )
+                .textContent =
+                priceDelivery2;
+
+
+            template
+                .querySelector(
+                    ".price-salon-3"
+                )
+                .textContent =
+                priceSalon3;
+
+
+            template
+                .querySelector(
+                    ".price-delivery-3"
+                )
+                .textContent =
+                priceDelivery3;
+
+
+            const menuThree =
+                template.querySelector(
+                    ".menu-three"
+                );
+
+
+            if (menu3Enabled) {
+
+                menuThree.classList.remove(
+                    "hidden"
+                );
+
+            } else {
+
+                menuThree.classList.add(
+                    "hidden"
+                );
+
+            }
+
+
+            card.appendChild(
+                template
+            );
+
+        }
+    );
 
 
     adjustFontSizes();
@@ -1458,7 +2000,7 @@ function updatePreview() {
 
 
 /* =========================================================
-   AJUSTE AUTOMATICO
+   AJUSTE AUTOMATICO DE FUENTE
 ========================================================= */
 
 function adjustFontSizes() {
@@ -1469,56 +2011,63 @@ function adjustFontSizes() {
         );
 
 
-    cards.forEach(card => {
+    cards.forEach(
+        card => {
 
-        const items =
-            card.querySelectorAll(
-                ".menu-item"
+            const items =
+                card.querySelectorAll(
+                    ".menu-item"
+                );
+
+
+            items.forEach(
+                item => {
+
+                    item.style.fontSize =
+                        "";
+
+                }
             );
 
 
-        items.forEach(item => {
-
-            item.style.fontSize =
-                "";
-
-        });
+            let fontSize =
+                9.7;
 
 
-        let fontSize =
-            9.7;
+            const content =
+                card.querySelector(
+                    ".menu-inner"
+                );
 
 
-        const content =
-            card.querySelector(
-                ".menu-inner"
-            );
+            if (!content) {
+                return;
+            }
 
 
-        if (!content) {
-            return;
-        }
+            while (
+                content.scrollHeight >
+                content.clientHeight &&
+                fontSize > 6.8
+            ) {
+
+                fontSize -=
+                    0.3;
 
 
-        while (
-            content.scrollHeight >
-            content.clientHeight &&
-            fontSize > 6.8
-        ) {
+                items.forEach(
+                    item => {
 
-            fontSize -= 0.3;
+                        item.style.fontSize =
+                            `${fontSize}px`;
 
+                    }
+                );
 
-            items.forEach(item => {
-
-                item.style.fontSize =
-                    `${fontSize}px`;
-
-            });
+            }
 
         }
-
-    });
+    );
 
 }
 
@@ -1534,31 +2083,40 @@ const generalInputs = [
     "phone2",
     "address",
     "highlight",
+
     "priceSalon1",
     "priceDelivery1",
+
     "priceSalon2",
-    "priceDelivery2"
+    "priceDelivery2",
+
+    "priceSalon3",
+    "priceDelivery3"
 
 ];
 
 
-generalInputs.forEach(id => {
+generalInputs.forEach(
+    id => {
 
-    const input =
-        document.getElementById(id);
+        const input =
+            document.getElementById(
+                id
+            );
 
 
-    if (!input) {
-        return;
+        if (!input) {
+            return;
+        }
+
+
+        input.addEventListener(
+            "input",
+            updatePreview
+        );
+
     }
-
-
-    input.addEventListener(
-        "input",
-        updatePreview
-    );
-
-});
+);
 
 
 /* =========================================================
@@ -1580,47 +2138,76 @@ function clearForm() {
 
     document.getElementById(
         "restaurantName"
-    ).value = "";
+    ).value =
+        "EXQUISIT RESTAURANT";
 
 
     document.getElementById(
         "phone1"
-    ).value = "";
+    ).value =
+        "3001900104";
 
 
     document.getElementById(
         "phone2"
-    ).value = "";
+    ).value =
+        "3142513029";
 
 
     document.getElementById(
         "address"
-    ).value = "";
+    ).value =
+        "AV. CARACAS #34-17 LOCAL 2";
 
 
     document.getElementById(
         "highlight"
-    ).value = "MENÚ";
+    ).value =
+        "MENÚ";
 
 
     document.getElementById(
         "priceSalon1"
-    ).value = "";
+    ).value =
+        "14000";
 
 
     document.getElementById(
         "priceDelivery1"
-    ).value = "";
+    ).value =
+        "15000";
 
 
     document.getElementById(
         "priceSalon2"
-    ).value = "";
+    ).value =
+        "22000";
 
 
     document.getElementById(
         "priceDelivery2"
-    ).value = "";
+    ).value =
+        "23000";
+
+
+    document.getElementById(
+        "priceSalon3"
+    ).value =
+        "25000";
+
+
+    document.getElementById(
+        "priceDelivery3"
+    ).value =
+        "26000";
+
+
+    /* MENU 3 SIEMPRE APAGADO AL LIMPIAR */
+
+    document.getElementById(
+        "enableMenu3"
+    ).checked =
+        false;
 
 
     data.entradas = [
@@ -1647,16 +2234,239 @@ function clearForm() {
     };
 
 
-    data.menu2 = [];
+    data.menu2 = [
+
+        {
+            id: 1,
+            value: "COSTILLAS BBQ"
+        },
+
+        {
+            id: 2,
+            value: "CHURRASCO"
+        },
+
+        {
+            id: 3,
+            value: "PECHUGA"
+        },
+
+        {
+            id: 4,
+            value: "CERDO"
+        }
+
+    ];
+
+
+    data.menu3 = [];
+
+
+    document
+        .querySelector(
+            ".menu3-section"
+        )
+        .classList.add(
+            "hidden"
+        );
+
+
+    document
+        .getElementById(
+            "menu3PriceGroup"
+        )
+        .classList.add(
+            "hidden"
+        );
 
 
     renderAllRecipeFields();
 
     renderMenu2();
 
+    renderMenu3();
+
     updatePreview();
 
 }
+
+
+/* =========================================================
+   CREAR CLON FIJO
+   IMPORTANTE PARA PC Y CELULAR
+========================================================= */
+
+async function createFixedCanvas(
+    element,
+    width,
+    height,
+    scale = 2
+) {
+
+    const container =
+        document.createElement(
+            "div"
+        );
+
+
+    container.style.position =
+        "fixed";
+
+
+    container.style.left =
+        "-100000px";
+
+
+    container.style.top =
+        "0";
+
+
+    container.style.width =
+        `${width}px`;
+
+
+    container.style.height =
+        `${height}px`;
+
+
+    container.style.background =
+        "#ffffff";
+
+
+    container.style.overflow =
+        "hidden";
+
+
+    container.style.zIndex =
+        "-9999";
+
+
+    const clone =
+        element.cloneNode(true);
+
+
+    clone.style.width =
+        `${width}px`;
+
+
+    clone.style.height =
+        `${height}px`;
+
+
+    clone.style.minWidth =
+        `${width}px`;
+
+
+    clone.style.minHeight =
+        `${height}px`;
+
+
+    clone.style.maxWidth =
+        `${width}px`;
+
+
+    clone.style.maxHeight =
+        `${height}px`;
+
+
+    clone.style.transform =
+        "none";
+
+
+    clone.style.transformOrigin =
+        "top left";
+
+
+    clone.style.margin =
+        "0";
+
+
+    clone.style.position =
+        "relative";
+
+
+    clone.style.left =
+        "0";
+
+
+    clone.style.top =
+        "0";
+
+
+    container.appendChild(
+        clone
+    );
+
+
+    document.body.appendChild(
+        container
+    );
+
+
+    /* Esperar a que el navegador pinte el clon */
+
+    await new Promise(
+        resolve =>
+            requestAnimationFrame(
+                () =>
+                    requestAnimationFrame(
+                        resolve
+                    )
+            )
+    );
+
+
+    const canvas =
+        await html2canvas(
+            clone,
+            {
+
+                scale:
+                    scale,
+
+                useCORS:
+                    true,
+
+                allowTaint:
+                    false,
+
+                backgroundColor:
+                    "#ffffff",
+
+                logging:
+                    false,
+
+                width:
+                    width,
+
+                height:
+                    height,
+
+                windowWidth:
+                    width,
+
+                windowHeight:
+                    height,
+
+                scrollX:
+                    0,
+
+                scrollY:
+                    0
+
+            }
+        );
+
+
+    document.body.removeChild(
+        container
+    );
+
+
+    return canvas;
+
+}
+
 
 /* =========================================================
    PDF
@@ -1665,22 +2475,30 @@ function clearForm() {
 async function generatePDF() {
 
     const button =
-        document.querySelector(".pdf-btn");
+        document.querySelector(
+            ".pdf-btn"
+        );
+
 
     const originalText =
         button.innerHTML;
 
+
     button.innerHTML =
         "Generando PDF...";
 
-    button.disabled = true;
 
-    let container = null;
+    button.disabled =
+        true;
+
 
     try {
 
         const original =
-            document.getElementById("menuSheet");
+            document.getElementById(
+                "menuSheet"
+            );
+
 
         if (!original) {
 
@@ -1691,135 +2509,33 @@ async function generatePDF() {
         }
 
 
-        /* =====================================================
-           CREAR COPIA DEL MENÚ
-        ===================================================== */
-
-        const clone =
-            original.cloneNode(true);
-
-
-        container =
-            document.createElement("div");
-
-
-        container.style.position =
-            "fixed";
-
-        container.style.left =
-            "-10000px";
-
-        container.style.top =
-            "0";
-
-        container.style.width =
-            "794px";
-
-        container.style.height =
-            "1123px";
-
-        container.style.background =
-            "#ffffff";
-
-        container.style.overflow =
-            "hidden";
-
-
-        /* =====================================================
-           QUITAR ESCALA MOBILE
-        ===================================================== */
-
-        clone.style.width =
-            "794px";
-
-        clone.style.height =
-            "1123px";
-
-        clone.style.transform =
-            "none";
-
-        clone.style.transformOrigin =
-            "initial";
-
-        clone.style.margin =
-            "0";
-
-        clone.style.position =
-            "relative";
-
-
-        container.appendChild(clone);
-
-        document.body.appendChild(container);
-
-
-        /* =====================================================
-           ESPERAR RENDER
-        ===================================================== */
-
-        await new Promise(resolve =>
-            requestAnimationFrame(resolve)
-        );
-
-
-        /* =====================================================
-           GENERAR CANVAS
-        ===================================================== */
+        /*
+         * SIEMPRE SE UTILIZAN LAS MISMAS DIMENSIONES.
+         *
+         * Esto evita que el móvil genere un PDF diferente
+         * debido a su resolución o escala CSS.
+         */
 
         const canvas =
-            await html2canvas(
-                clone,
-                {
-
-                    /* Antes: 3 */
-                    scale: 2,
-
-                    useCORS: true,
-
-                    allowTaint: false,
-
-                    backgroundColor:
-                        "#ffffff",
-
-                    logging: false,
-
-                    width: 794,
-
-                    height: 1123,
-
-                    windowWidth: 794,
-
-                    windowHeight: 1123
-
-                }
+            await createFixedCanvas(
+                original,
+                794,
+                1123,
+                2
             );
 
-
-        /* =====================================================
-           ELIMINAR COPIA
-        ===================================================== */
-
-        document.body.removeChild(
-            container
-        );
-
-        container = null;
-
-
-        /* =====================================================
-           CREAR PDF
-        ===================================================== */
 
         const imgData =
             canvas.toDataURL(
                 "image/jpeg",
-                0.92
+                0.95
             );
 
 
         const {
             jsPDF
-        } = window.jspdf;
+        } =
+            window.jspdf;
 
 
         const pdf =
@@ -1852,10 +2568,6 @@ async function generatePDF() {
         );
 
 
-        /* =====================================================
-           NOMBRE DEL ARCHIVO
-        ===================================================== */
-
         const date =
             new Date()
                 .toISOString()
@@ -1866,12 +2578,10 @@ async function generatePDF() {
             `Menu-del-dia-${date}.pdf`;
 
 
-        /* =====================================================
-           CREAR ARCHIVO
-        ===================================================== */
-
         const pdfBlob =
-            pdf.output("blob");
+            pdf.output(
+                "blob"
+            );
 
 
         const pdfFile =
@@ -1885,27 +2595,32 @@ async function generatePDF() {
             );
 
 
-        /* =====================================================
-           COMPARTIR
-        ===================================================== */
+        /*
+         * COMPARTIR EN CELULARES
+         */
 
         if (
             navigator.share &&
             navigator.canShare &&
             navigator.canShare({
-                files: [pdfFile]
+                files: [
+                    pdfFile
+                ]
             })
         ) {
 
             await navigator.share({
-                files: [pdfFile]
+
+                files: [
+                    pdfFile
+                ],
+
+                title:
+                    "Menú del restaurante"
+
             });
 
         } else {
-
-            /* =================================================
-               DESCARGA NORMAL
-            ================================================= */
 
             const pdfUrl =
                 URL.createObjectURL(
@@ -1922,8 +2637,10 @@ async function generatePDF() {
             link.href =
                 pdfUrl;
 
+
             link.download =
                 fileName;
+
 
             link.style.display =
                 "none";
@@ -1933,23 +2650,27 @@ async function generatePDF() {
                 link
             );
 
+
             link.click();
+
 
             document.body.removeChild(
                 link
             );
 
 
-            setTimeout(() => {
+            setTimeout(
+                () => {
 
-                URL.revokeObjectURL(
-                    pdfUrl
-                );
+                    URL.revokeObjectURL(
+                        pdfUrl
+                    );
 
-            }, 2000);
+                },
+                2000
+            );
 
         }
-
 
     } catch (error) {
 
@@ -1960,20 +2681,9 @@ async function generatePDF() {
 
 
         if (
-            container &&
-            document.body.contains(container)
-        ) {
-
-            document.body.removeChild(
-                container
-            );
-
-        }
-
-
-        if (
             error &&
-            error.name === "AbortError"
+            error.name ===
+                "AbortError"
         ) {
 
             return;
@@ -1990,236 +2700,175 @@ async function generatePDF() {
         button.innerHTML =
             originalText;
 
+
         button.disabled =
             false;
 
     }
 
 }
+
+
 /* =========================================================
    PNG
 ========================================================= */
 
 async function generatePNG() {
 
-    const cards =
-        document.querySelectorAll(
-            ".menu-card"
+    const button =
+        document.querySelector(
+            ".png-btn"
         );
 
 
-    if (!cards.length) {
+    const originalText =
+        button.innerHTML;
 
-        alert(
-            "No se encontró el menú."
-        );
 
-        return;
+    button.innerHTML =
+        "Generando PNG...";
 
-    }
+
+    button.disabled =
+        true;
 
 
     try {
+
+        const cards =
+            document.querySelectorAll(
+                ".menu-card"
+            );
+
+
+        if (!cards.length) {
+
+            throw new Error(
+                "No se encontró el menú."
+            );
+
+        }
+
+
+        /*
+         * SOLO SE EXPORTA UN MENU.
+         *
+         * Se utiliza exactamente el mismo tamaño
+         * en PC y móviles.
+         */
 
         const original =
             cards[0];
 
 
-        const clone =
-            original.cloneNode(true);
-
-
-        const container =
-            document.createElement(
-                "div"
-            );
-
-
-        container.style.position =
-            "fixed";
-
-        container.style.left =
-            "-10000px";
-
-        container.style.top =
-            "0";
-
-        container.style.width =
-            "397px";
-
-        container.style.height =
-            "374px";
-
-        container.style.background =
-            "#ffffff";
-
-
-        clone.style.transform =
-            "none";
-
-        clone.style.transformOrigin =
-            "initial";
-
-        clone.style.width =
-            "397px";
-
-        clone.style.height =
-            "374px";
-
-        clone.style.margin =
-            "0";
-
-
-        container.appendChild(
-            clone
-        );
-
-
-        document.body.appendChild(
-            container
-        );
-
-
-        await new Promise(
-            resolve =>
-                setTimeout(
-                    resolve,
-                    150
-                )
-        );
-
-
         const canvas =
-            await html2canvas(
-                clone,
+            await createFixedCanvas(
+                original,
+                397,
+                374,
+                3
+            );
+
+
+        const blob =
+            await new Promise(
+                resolve =>
+                    canvas.toBlob(
+                        resolve,
+                        "image/png"
+                    )
+            );
+
+
+        if (!blob) {
+
+            throw new Error(
+                "No se pudo generar la imagen."
+            );
+
+        }
+
+
+        const file =
+            new File(
+                [blob],
+                "menu.png",
                 {
-
-                    scale: 3,
-
-                    useCORS: true,
-
-                    allowTaint: false,
-
-                    backgroundColor:
-                        "#ffffff",
-
-                    logging: false,
-
-                    width: 397,
-
-                    height: 374,
-
-                    windowWidth: 397,
-
-                    windowHeight: 374
-
+                    type:
+                        "image/png"
                 }
             );
 
 
-        document.body.removeChild(
-            container
-        );
+        /*
+         * COMPARTIR EN CELULAR
+         */
 
+        if (
+            navigator.share &&
+            navigator.canShare &&
+            navigator.canShare({
+                files: [
+                    file
+                ]
+            })
+        ) {
 
-        canvas.toBlob(
-            function(blob) {
+            await navigator.share({
 
-                if (!blob) {
+                files: [
+                    file
+                ],
 
-                    alert(
-                        "No se pudo generar la imagen."
-                    );
+                title:
+                    "Menú del restaurante"
 
-                    return;
+            });
 
-                }
+        } else {
 
-
-                const file =
-                    new File(
-                        [blob],
-                        "menu.png",
-                        {
-                            type:
-                                "image/png"
-                        }
-                    );
-
-
-                if (
-                    navigator.share &&
-                    navigator.canShare &&
-                    navigator.canShare({
-                        files: [file]
-                    })
-                ) {
-
-                    navigator.share({
-
-                        files: [file],
-
-                        title:
-                            "Menú del restaurante"
-
-                    }).catch(
-                        error =>
-                            console.log(
-                                "Compartir cancelado:",
-                                error
-                            )
-                    );
-
-
-                    return;
-
-                }
-
-
-                const url =
-                    URL.createObjectURL(
-                        blob
-                    );
-
-
-                const link =
-                    document.createElement(
-                        "a"
-                    );
-
-
-                link.href =
-                    url;
-
-                link.download =
-                    "menu.png";
-
-
-                document.body.appendChild(
-                    link
+            const url =
+                URL.createObjectURL(
+                    blob
                 );
 
 
-                link.click();
-
-
-                document.body.removeChild(
-                    link
+            const link =
+                document.createElement(
+                    "a"
                 );
 
 
-                setTimeout(
-                    () =>
-                        URL.revokeObjectURL(
-                            url
-                        ),
-                    1000
-                );
+            link.href =
+                url;
 
-            },
-            "image/png"
-        );
 
+            link.download =
+                "menu.png";
+
+
+            document.body.appendChild(
+                link
+            );
+
+
+            link.click();
+
+
+            document.body.removeChild(
+                link
+            );
+
+
+            setTimeout(
+                () =>
+                    URL.revokeObjectURL(
+                        url
+                    ),
+                2000
+            );
+
+        }
 
     } catch (error) {
 
@@ -2228,9 +2877,30 @@ async function generatePNG() {
             error
         );
 
+
+        if (
+            error &&
+            error.name ===
+                "AbortError"
+        ) {
+
+            return;
+
+        }
+
+
         alert(
             "No fue posible generar la imagen."
         );
+
+    } finally {
+
+        button.innerHTML =
+            originalText;
+
+
+        button.disabled =
+            false;
 
     }
 
@@ -2238,7 +2908,7 @@ async function generatePNG() {
 
 
 /* =========================================================
-   CERRAR DROPDOWNS AL HACER CLICK AFUERA
+   CERRAR DROPDOWNS
 ========================================================= */
 
 document.addEventListener(
@@ -2255,13 +2925,15 @@ document.addEventListener(
                 .querySelectorAll(
                     ".recipe-dropdown"
                 )
-                .forEach(dropdown => {
+                .forEach(
+                    dropdown => {
 
-                    dropdown.classList.remove(
-                        "open"
-                    );
+                        dropdown.classList.remove(
+                            "open"
+                        );
 
-                });
+                    }
+                );
 
         }
 
@@ -2282,15 +2954,18 @@ document
         event => {
 
             if (
-                event.key === "Enter"
+                event.key ===
+                "Enter"
             ) {
 
                 saveNewRecipe();
 
             }
 
+
             if (
-                event.key === "Escape"
+                event.key ===
+                "Escape"
             ) {
 
                 closeRecipeModal();
@@ -2309,58 +2984,44 @@ document.addEventListener(
     "DOMContentLoaded",
     () => {
 
-        renderAllRecipeFields();
+        /*
+         * IMPORTANTE:
+         * Menú 3 comienza DESACTIVADO.
+         */
 
-        addMenu2Item(
-            "COSTILLAS BBQ"
-        );
-
-        addMenu2Item(
-            "CHURRASCO"
-        );
-
-        addMenu2Item(
-            "PECHUGA"
-        );
-        addMenu2Item(
-            "CERDO"
-        );
+        const menu3Toggle =
+            document.getElementById(
+                "enableMenu3"
+            );
 
 
-        data.entradas = [
-            "",
-            ""
-        ];
+        menu3Toggle.checked =
+            false;
 
 
-        data.principios = [
-            "",
-            "",
-            ""
-        ];
+        document
+            .getElementById(
+                "menu3Section"
+            )
+            .classList.add(
+                "hidden"
+            );
 
 
-        data.proteinas = {
-
-            pechuga:
-                "",
-
-            piernaPernil:
-                "",
-
-            carne:
-                "",
-
-            cerdo:
-                "",
-
-            higado:
-                "Hígado encebollado"
-
-        };
+        document
+            .getElementById(
+                "menu3PriceGroup"
+            )
+            .classList.add(
+                "hidden"
+            );
 
 
         renderAllRecipeFields();
+
+        renderMenu2();
+
+        renderMenu3();
 
         updatePreview();
 

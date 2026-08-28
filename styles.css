@@ -4,29 +4,63 @@
     box-sizing: border-box;
 }
 
+
 :root {
+
     --accent: #f9050e;
     --accent-dark: #d90008;
     --accent-light: #fff0f0;
 
     --black: #111111;
     --gray: #666666;
+
     --background: #f4f4f5;
+
     --white: #ffffff;
 
     --radius: 12px;
+
 }
+
 
 body {
-    font-family: Inter, Arial, Helvetica, sans-serif;
-    background: var(--background);
-    color: var(--black);
-    min-height: 100vh;
+
+    font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        var(--background);
+
+    color:
+        var(--black);
+
+    min-height:
+        100vh;
+
 }
 
+
+button,
+input,
+select {
+
+    font-family:
+        inherit;
+
+}
+
+
 .app {
-    display: flex;
-    min-height: 100vh;
+
+    display:
+        flex;
+
+    min-height:
+        100vh;
+
 }
 
 
@@ -35,81 +69,196 @@ body {
 ========================================================= */
 
 .sidebar {
-    width: 390px;
-    background: white;
-    border-right: 1px solid #e6e6e6;
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
+
+    width:
+        390px;
+
+    background:
+        white;
+
+    border-right:
+        1px solid #e6e6e6;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    flex-shrink:
+        0;
+
 }
+
 
 .brand {
-    padding: 25px 28px;
-    border-bottom: 1px solid #eeeeee;
-    display: flex;
-    align-items: center;
-    gap: 13px;
+
+    padding:
+        25px 28px;
+
+    border-bottom:
+        1px solid #eeeeee;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        13px;
+
 }
+
 
 .brand-icon {
-    width: 44px;
-    height: 44px;
-    background: var(--accent);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 21px;
+
+    width:
+        44px;
+
+    height:
+        44px;
+
+    background:
+        var(--accent);
+
+    border-radius:
+        12px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        21px;
+
 }
+
 
 .brand h1 {
-    font-size: 20px;
-    line-height: 1;
-    font-weight: 800;
+
+    font-size:
+        20px;
+
+    line-height:
+        1;
+
+    font-weight:
+        800;
+
 }
+
 
 .brand span {
-    font-size: 13px;
-    color: #777;
-    display: block;
-    margin-top: 4px;
+
+    font-size:
+        13px;
+
+    color:
+        #777;
+
+    display:
+        block;
+
+    margin-top:
+        4px;
+
 }
+
 
 .sidebar-content {
-    padding: 25px;
-    overflow-y: auto;
-    height: calc(100vh - 95px);
+
+    padding:
+        25px;
+
+    overflow-y:
+        auto;
+
+    height:
+        calc(100vh - 95px);
+
 }
+
 
 .form-section {
-    padding-bottom: 28px;
-    margin-bottom: 28px;
-    border-bottom: 1px solid #eeeeee;
+
+    padding-bottom:
+        28px;
+
+    margin-bottom:
+        28px;
+
+    border-bottom:
+        1px solid #eeeeee;
+
 }
+
 
 .section-title {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    margin-bottom: 18px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        9px;
+
+    margin-bottom:
+        18px;
+
 }
+
 
 .section-title span {
-    width: 28px;
-    height: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--accent-light);
-    color: var(--accent-dark);
-    border-radius: 7px;
-    font-size: 11px;
-    font-weight: 800;
+
+    width:
+        28px;
+
+    height:
+        28px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        var(--accent-light);
+
+    color:
+        var(--accent-dark);
+
+    border-radius:
+        7px;
+
+    font-size:
+        11px;
+
+    font-weight:
+        800;
+
 }
 
+
 .section-title h2 {
-    font-size: 15px;
-    font-weight: 800;
+
+    font-size:
+        15px;
+
+    font-weight:
+        800;
+
 }
 
 
@@ -118,36 +267,81 @@ body {
 ========================================================= */
 
 .field {
-    margin-bottom: 13px;
+
+    margin-bottom:
+        13px;
+
 }
 
+
 .field label {
-    display: block;
-    font-size: 11px;
-    font-weight: 700;
-    color: #666;
-    margin-bottom: 6px;
+
+    display:
+        block;
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+
+    color:
+        #666;
+
+    margin-bottom:
+        6px;
+
 }
+
 
 .field input,
 .field select {
-    width: 100%;
-    height: 42px;
-    border: 1px solid #dddddd;
-    background: #fafafa;
-    border-radius: 8px;
-    padding: 0 12px;
-    outline: none;
-    font-size: 13px;
-    color: #9d7777;
-    transition: 0.2s;
+
+    width:
+        100%;
+
+    height:
+        42px;
+
+    border:
+        1px solid #dddddd;
+
+    background:
+        #fafafa;
+
+    border-radius:
+        8px;
+
+    padding:
+        0 12px;
+
+    outline:
+        none;
+
+    font-size:
+        13px;
+
+    color:
+        #333;
+
+    transition:
+        .2s;
+
 }
+
 
 .field input:focus,
 .field select:focus {
-    border-color: var(--accent);
-    background: white;
-    box-shadow: 0 0 0 3px rgba(249, 5, 14, 0.08);
+
+    border-color:
+        var(--accent);
+
+    background:
+        white;
+
+    box-shadow:
+        0 0 0 3px rgba(249,5,14,.08);
+
 }
 
 
@@ -156,229 +350,765 @@ body {
 ========================================================= */
 
 .recipe-field {
-    margin-bottom: 15px;
+
+    margin-bottom:
+        15px;
+
 }
+
 
 .recipe-label {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 6px;
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    margin-bottom:
+        6px;
+
 }
+
 
 .recipe-label strong {
-    font-size: 11px;
-    font-weight: 800;
+
+    font-size:
+        11px;
+
+    font-weight:
+        800;
+
 }
+
 
 .recipe-label span {
-    font-size: 10px;
-    color: #999;
+
+    font-size:
+        10px;
+
+    color:
+        #999;
+
 }
+
 
 .recipe-picker {
-    position: relative;
+
+    position:
+        relative;
+
 }
+
 
 .recipe-search {
-    width: 100%;
-    height: 42px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background: #fafafa;
-    padding: 0 35px 0 12px;
-    outline: none;
-    font-size: 16px;
+
+    width:
+        100%;
+
+    height:
+        42px;
+
+    border:
+        1px solid #ddd;
+
+    border-radius:
+        8px;
+
+    background:
+        #fafafa;
+
+    padding:
+        0 35px 0 12px;
+
+    outline:
+        none;
+
+    font-size:
+        16px;
+
 }
+
 
 .recipe-search:focus {
-    border-color: var(--accent);
-    background: white;
+
+    border-color:
+        var(--accent);
+
+    background:
+        white;
+
 }
 
-.recipe-search::placeholder {
-    color: #999;
-}
 
 .recipe-dropdown {
-    position: absolute;
-    z-index: 100;
-    left: 0;
-    right: 0;
-    top: calc(100% + 5px);
 
-    max-height: 210px;
+    position:
+        absolute;
 
-    background: white;
+    z-index:
+        100;
 
-    border: 1px solid #ddd;
-    border-radius: 9px;
+    left:
+        0;
+
+    right:
+        0;
+
+    top:
+        calc(100% + 5px);
+
+    max-height:
+        210px;
+
+    background:
+        white;
+
+    border:
+        1px solid #ddd;
+
+    border-radius:
+        9px;
 
     box-shadow:
-        0 12px 30px rgba(0,0,0,0.12);
+        0 12px 30px rgba(0,0,0,.12);
 
-    overflow-y: auto;
+    overflow-y:
+        auto;
 
-    display: none;
+    display:
+        none;
+
 }
+
 
 .recipe-dropdown.open {
-    display: block;
+
+    display:
+        block;
+
 }
+
 
 .recipe-option {
-    padding: 9px 11px;
-    font-size: 12px;
-    cursor: pointer;
-    border-bottom: 1px solid #f2f2f2;
+
+    padding:
+        9px 11px;
+
+    font-size:
+        12px;
+
+    cursor:
+        pointer;
+
+    border-bottom:
+        1px solid #f2f2f2;
+
 }
 
-.recipe-option:last-child {
-    border-bottom: 0;
-}
 
 .recipe-option:hover {
-    background: var(--accent-light);
-    color: var(--accent-dark);
+
+    background:
+        var(--accent-light);
+
+    color:
+        var(--accent-dark);
+
 }
+
 
 .recipe-option-empty {
-    padding: 12px;
-    text-align: center;
-    font-size: 11px;
-    color: #999;
+
+    padding:
+        12px;
+
+    text-align:
+        center;
+
+    font-size:
+        11px;
+
+    color:
+        #999;
+
 }
+
 
 .recipe-selected {
-    margin-top: 5px;
 
-    min-height: 34px;
+    margin-top:
+        5px;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    min-height:
+        34px;
 
-    background: #fff5f5;
+    display:
+        flex;
 
-    border: 1px solid #ffd6d6;
+    align-items:
+        center;
 
-    border-radius: 7px;
+    justify-content:
+        space-between;
 
-    padding: 7px 9px;
+    background:
+        #fff5f5;
 
-    font-size: 11px;
-    font-weight: 700;
+    border:
+        1px solid #ffd6d6;
+
+    border-radius:
+        7px;
+
+    padding:
+        7px 9px;
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+
 }
+
 
 .recipe-selected.empty {
-    display: none;
+
+    display:
+        none;
+
 }
+
 
 .recipe-selected button {
-    border: 0;
-    background: transparent;
-    color: #aaa;
-    cursor: pointer;
-    font-size: 16px;
-}
 
-.recipe-selected button:hover {
-    color: var(--accent);
-}
+    border:
+        0;
 
-.recipe-actions {
-    display: flex;
-    gap: 6px;
-    margin-top: 6px;
-}
+    background:
+        transparent;
 
-.recipe-new-btn {
-    flex: 1;
+    color:
+        #aaa;
 
-    height: 32px;
+    cursor:
+        pointer;
 
-    border: 1px dashed #ccc;
-    border-radius: 7px;
+    font-size:
+        16px;
 
-    background: white;
-
-    color: #666;
-
-    font-size: 10px;
-    font-weight: 800;
-
-    cursor: pointer;
-}
-
-.recipe-new-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: var(--accent-light);
 }
 
 
 /* =========================================================
-   MENU 2
+   BOTONES DE AGREGAR OPCIONES
+========================================================= */
+
+.add-option-btn {
+
+    width:
+        100%;
+
+    min-height:
+        38px;
+
+    border:
+        1px dashed #b9b9b9;
+
+    background:
+        #fafafa;
+
+    border-radius:
+        8px;
+
+    cursor:
+        pointer;
+
+    color:
+        #555;
+
+    font-size:
+        11px;
+
+    font-weight:
+        800;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        5px;
+
+    transition:
+        .2s;
+
+}
+
+
+.add-option-btn span {
+
+    font-size:
+        17px;
+
+    line-height:
+        1;
+
+}
+
+
+.add-option-btn:hover {
+
+    border-color:
+        var(--accent);
+
+    color:
+        var(--accent-dark);
+
+    background:
+        var(--accent-light);
+
+}
+
+
+/* =========================================================
+   BOTON NUEVA RECETA
+========================================================= */
+
+.recipe-actions {
+
+    display:
+        flex;
+
+    gap:
+        6px;
+
+    margin-top:
+        6px;
+
+}
+
+
+.recipe-new-btn {
+
+    flex:
+        1;
+
+    height:
+        32px;
+
+    border:
+        1px dashed #ccc;
+
+    border-radius:
+        7px;
+
+    background:
+        white;
+
+    color:
+        #888;
+
+    font-size:
+        10px;
+
+    font-weight:
+        700;
+
+    cursor:
+        pointer;
+
+}
+
+
+.recipe-new-btn:hover {
+
+    border-color:
+        #777;
+
+    color:
+        #333;
+
+    background:
+        #f7f7f7;
+
+}
+
+
+/* =========================================================
+   MENUS DINAMICOS
 ========================================================= */
 
 .dynamic-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 10px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        8px;
+
+    margin-bottom:
+        10px;
+
 }
+
 
 .dynamic-item {
-    display: flex;
-    gap: 7px;
+
+    display:
+        flex;
+
+    gap:
+        7px;
+
 }
+
 
 .dynamic-item input {
-    flex: 1;
-    height: 38px;
-    border: 1px solid #ddd;
-    border-radius: 7px;
-    padding: 0 10px;
-    font-size: 13px;
-    outline: none;
+
+    flex:
+        1;
+
+    height:
+        38px;
+
+    border:
+        1px solid #ddd;
+
+    border-radius:
+        7px;
+
+    padding:
+        0 10px;
+
+    font-size:
+        13px;
+
+    outline:
+        none;
+
 }
+
 
 .dynamic-item input:focus {
-    border-color: var(--accent);
+
+    border-color:
+        var(--accent);
+
 }
+
 
 .remove-item {
-    width: 38px;
-    height: 38px;
-    border: 0;
-    border-radius: 7px;
-    background: #f4f4f4;
-    color: #888;
-    cursor: pointer;
-    font-size: 17px;
+
+    width:
+        38px;
+
+    height:
+        38px;
+
+    border:
+        0;
+
+    border-radius:
+        7px;
+
+    background:
+        #f4f4f4;
+
+    color:
+        #888;
+
+    cursor:
+        pointer;
+
+    font-size:
+        17px;
+
 }
 
-.remove-item:hover {
-    background: #ffe6e6;
-    color: #e54848;
+
+/* =========================================================
+   BOTON MENU 2
+========================================================= */
+
+.add-menu-btn {
+
+    width:
+        100%;
+
+    height:
+        38px;
+
+    border:
+        1px dashed #aaa;
+
+    background:
+        #f7f7f7;
+
+    border-radius:
+        8px;
+
+    cursor:
+        pointer;
+
+    color:
+        #444;
+
+    font-size:
+        11px;
+
+    font-weight:
+        800;
+
 }
 
-.add-btn {
-    width: 100%;
-    height: 38px;
-    border: 1px dashed #ccc;
-    background: white;
-    border-radius: 8px;
-    cursor: pointer;
-    color: #555;
-    font-size: 12px;
-    font-weight: 700;
+
+.add-menu-btn:hover {
+
+    border-color:
+        #555;
+
+    background:
+        #eeeeee;
+
 }
 
-.add-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent-dark);
-    background: var(--accent-light);
+
+/* =========================================================
+   MENU 3
+========================================================= */
+
+.menu3-toggle-row {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        15px;
+
+    padding:
+        13px;
+
+    border:
+        1px solid #eee;
+
+    border-radius:
+        10px;
+
+    background:
+        #fafafa;
+
+}
+
+
+.menu3-toggle-row strong {
+
+    display:
+        block;
+
+    font-size:
+        12px;
+
+}
+
+
+.menu3-toggle-row small {
+
+    display:
+        block;
+
+    margin-top:
+        4px;
+
+    font-size:
+        10px;
+
+    color:
+        #888;
+
+}
+
+
+.switch {
+
+    position:
+        relative;
+
+    display:
+        inline-block;
+
+    width:
+        48px;
+
+    height:
+        26px;
+
+    flex-shrink:
+        0;
+
+}
+
+
+.switch input {
+
+    opacity:
+        0;
+
+    width:
+        0;
+
+    height:
+        0;
+
+}
+
+
+.slider {
+
+    position:
+        absolute;
+
+    cursor:
+        pointer;
+
+    inset:
+        0;
+
+    background:
+        #ccc;
+
+    border-radius:
+        30px;
+
+    transition:
+        .25s;
+
+}
+
+
+.slider::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        20px;
+
+    height:
+        20px;
+
+    left:
+        3px;
+
+    top:
+        3px;
+
+    background:
+        white;
+
+    border-radius:
+        50%;
+
+    transition:
+        .25s;
+
+}
+
+
+.switch input:checked + .slider {
+
+    background:
+        var(--accent);
+
+}
+
+
+.switch input:checked + .slider::before {
+
+    transform:
+        translateX(22px);
+
+}
+
+
+.menu3-section {
+
+    margin-top:
+        15px;
+
+}
+
+
+.add-menu3-btn {
+
+    width:
+        100%;
+
+    height:
+        38px;
+
+    border:
+        1px dashed #f2a0a0;
+
+    background:
+        #fff7f7;
+
+    border-radius:
+        8px;
+
+    cursor:
+        pointer;
+
+    color:
+        var(--accent-dark);
+
+    font-size:
+        11px;
+
+    font-weight:
+        800;
+
+}
+
+
+.add-menu3-btn:hover {
+
+    background:
+        var(--accent-light);
+
+}
+
+
+/* =========================================================
+   HIDDEN
+========================================================= */
+
+.hidden {
+
+    display:
+        none !important;
+
 }
 
 
@@ -386,33 +1116,108 @@ body {
    PRECIOS
 ========================================================= */
 
-.price-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
+.price-group {
+
+    padding:
+        12px;
+
+    margin-bottom:
+        14px;
+
+    border:
+        1px solid #eee;
+
+    border-radius:
+        9px;
+
+    background:
+        #fafafa;
+
 }
+
+
+.price-group h3 {
+
+    font-size:
+        11px;
+
+    font-weight:
+        800;
+
+    margin-bottom:
+        12px;
+
+}
+
+
+.price-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:
+        10px;
+
+}
+
 
 .price-input {
-    display: flex;
-    align-items: center;
-    height: 42px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background: #fafafa;
-    overflow: hidden;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    height:
+        42px;
+
+    border:
+        1px solid #ddd;
+
+    border-radius:
+        8px;
+
+    background:
+        white;
+
+    overflow:
+        hidden;
+
 }
+
 
 .price-input span {
-    padding-left: 10px;
-    font-size: 13px;
-    font-weight: 700;
-    color: #777;
+
+    padding-left:
+        10px;
+
+    font-size:
+        13px;
+
+    font-weight:
+        700;
+
+    color:
+        #777;
+
 }
 
+
 .price-input input {
-    border: 0;
-    background: transparent;
-    padding-left: 5px;
+
+    border:
+        0 !important;
+
+    background:
+        transparent !important;
+
+    padding-left:
+        5px !important;
+
 }
 
 
@@ -421,50 +1226,100 @@ body {
 ========================================================= */
 
 .actions {
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-    padding-bottom: 25px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        9px;
+
+    padding-bottom:
+        25px;
+
 }
+
 
 .actions button {
-    width: 100%;
-    height: 46px;
-    border-radius: 9px;
-    border: 0;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 800;
+
+    width:
+        100%;
+
+    height:
+        46px;
+
+    border-radius:
+        9px;
+
+    cursor:
+        pointer;
+
+    font-size:
+        13px;
+
+    font-weight:
+        800;
+
 }
+
 
 .clear-btn {
-    background: white;
-    color: #777;
-    border: 1px solid #ddd !important;
+
+    background:
+        white;
+
+    color:
+        #777;
+
+    border:
+        1px solid #ddd;
+
 }
 
-.clear-btn:hover {
-    background: #fafafa;
-}
 
 .pdf-btn {
-    background: var(--black);
-    color: white;
+
+    background:
+        var(--black);
+
+    color:
+        white;
+
+    border:
+        0;
+
 }
+
 
 .pdf-btn:hover {
-    background: var(--accent-dark);
-    transform: translateY(-1px);
+
+    background:
+        var(--accent-dark);
+
 }
+
 
 .png-btn {
-    background: var(--accent);
-    color: white;
+
+    background:
+        var(--accent);
+
+    color:
+        white;
+
+    border:
+        0;
+
 }
 
+
 .png-btn:hover {
-    background: var(--accent-dark);
-    transform: translateY(-1px);
+
+    background:
+        var(--accent-dark);
+
 }
 
 
@@ -473,56 +1328,133 @@ body {
 ========================================================= */
 
 .preview-area {
-    flex: 1;
-    min-width: 0;
-    padding: 40px;
-    overflow: auto;
+
+    flex:
+        1;
+
+    min-width:
+        0;
+
+    padding:
+        40px;
+
+    overflow:
+        auto;
+
 }
+
 
 .preview-header {
-    max-width: 1000px;
-    margin: 0 auto 30px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+
+    max-width:
+        1000px;
+
+    margin:
+        0 auto 30px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
 }
+
 
 .eyebrow {
-    font-size: 10px;
-    font-weight: 900;
-    letter-spacing: 2px;
-    color: var(--accent-dark);
+
+    font-size:
+        10px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        2px;
+
+    color:
+        var(--accent-dark);
+
 }
+
 
 .preview-header h2 {
-    margin-top: 4px;
-    font-size: 25px;
-    font-weight: 900;
+
+    margin-top:
+        4px;
+
+    font-size:
+        25px;
+
+    font-weight:
+        900;
+
 }
+
 
 .preview-header p {
-    margin-top: 4px;
-    color: #777;
-    font-size: 13px;
+
+    margin-top:
+        4px;
+
+    color:
+        #777;
+
+    font-size:
+        13px;
+
 }
+
 
 .status {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    font-size: 11px;
-    color: #777;
-    background: white;
-    padding: 9px 12px;
-    border-radius: 20px;
-    border: 1px solid #eee;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        7px;
+
+    font-size:
+        11px;
+
+    color:
+        #777;
+
+    background:
+        white;
+
+    padding:
+        9px 12px;
+
+    border-radius:
+        20px;
+
+    border:
+        1px solid #eee;
+
 }
 
+
 .status-dot {
-    width: 7px;
-    height: 7px;
-    background: #39b54a;
-    border-radius: 50%;
+
+    width:
+        7px;
+
+    height:
+        7px;
+
+    background:
+        #39b54a;
+
+    border-radius:
+        50%;
+
 }
 
 
@@ -531,54 +1463,110 @@ body {
 ========================================================= */
 
 .paper-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding-bottom: 50px;
+
+    width:
+        100%;
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    padding-bottom:
+        50px;
+
 }
+
 
 .menu-sheet {
-    width: 794px;
-    height: 1123px;
-    background: white;
+
+    width:
+        794px;
+
+    height:
+        1123px;
+
+    min-width:
+        794px;
+
+    min-height:
+        1123px;
+
+    background:
+        white;
 
     box-shadow:
-        0 15px 45px rgba(0,0,0,0.12);
+        0 15px 45px rgba(0,0,0,.12);
 
-    display: grid;
+    display:
+        grid;
 
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns:
+        1fr 1fr;
 
-    position: relative;
-    overflow: hidden;
+    grid-template-rows:
+        repeat(3, 1fr);
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
 }
 
-.menu-card {
-    position: relative;
-    overflow: hidden;
 
-    border-right: 1px dashed #b98663;
-    border-bottom: 1px dashed #999;
+/* =========================================================
+   CARD
+========================================================= */
+
+.menu-card {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    border-right:
+        1px dashed #b98663;
+
+    border-bottom:
+        1px dashed #999;
 
     background-image:
         linear-gradient(
-            rgba(255, 245, 227, 0.123),
-            rgba(255, 253, 251, 0.111)
+            rgba(255,245,227,.123),
+            rgba(255,253,251,.111)
         ),
         url("images/image.png");
 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-size:
+        cover;
+
+    background-position:
+        center;
+
+    background-repeat:
+        no-repeat;
+
 }
+
 
 .menu-card:nth-child(2n) {
-    border-right: 0;
+
+    border-right:
+        0;
+
 }
 
+
 .menu-card:nth-child(n + 5) {
-    border-bottom: 0;
+
+    border-bottom:
+        0;
+
 }
 
 
@@ -587,207 +1575,529 @@ body {
 ========================================================= */
 
 .menu-inner {
-    width: 100%;
-    height: 100%;
-    padding: 14px 15px 12px;
-    position: relative;
-    overflow: hidden;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    padding:
+        14px 15px 12px;
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
 }
+
 
 .menu-top {
-    height: 48px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+    height:
+        48px;
+
+    position:
+        relative;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
 }
+
 
 .restaurant-logo {
-    position: absolute;
-    left: 0;
-    top: 80%;
-    transform: translateY(-50%);
 
-    width: 90px;
-    height: 90px;
+    position:
+        absolute;
 
-    object-fit: contain;
-    border-radius: 50%;
+    left:
+        0;
+
+    top:
+        80%;
+
+    transform:
+        translateY(-50%);
+
+    width:
+        90px;
+
+    height:
+        90px;
+
+    object-fit:
+        contain;
+
+    border-radius:
+        50%;
+
 }
+
 
 .restaurant-name {
-    font-family: Georgia, "Times New Roman", serif;
-    font-weight: 900;
-    font-size: 20px;
-    text-align: center;
-    max-width: 70%;
-    line-height: 1;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-weight:
+        900;
+
+    font-size:
+        20px;
+
+    text-align:
+        center;
+
+    max-width:
+        70%;
+
+    line-height:
+        1;
+
 }
+
 
 .menu-badge-image {
-    position: absolute;
 
-    right: -2px;
-    top: -13px;
+    position:
+        absolute;
 
-    width: 100px;
-    height: 100px;
+    right:
+        -2px;
 
-    object-fit: contain;
+    top:
+        -13px;
 
-    display: block;
+    width:
+        100px;
+
+    height:
+        100px;
+
+    object-fit:
+        contain;
+
 }
+
+
 .contact-info {
-    text-align: center;
-    margin-top: 2px;
-    margin-bottom: 2px;
+
+    text-align:
+        center;
+
+    margin-top:
+        2px;
+
+    margin-bottom:
+        2px;
+
 }
+
+
+.service,
+.phones,
+.address {
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+
+}
+
 
 .service {
-    font-size: 11px;
-    font-weight: 700;
-    margin-bottom: 0px;
+
+    margin-bottom:
+        0;
+
 }
 
-.phones {
-    font-size: 11px;
-    font-weight: 700;
-    margin-bottom: 0px;
-}
 
-.address {
-    font-size: 11px;
-    font-weight: 700;
-}
+/* =========================================================
+   DISTRIBUCION DE MENUS
+========================================================= */
 
 .menus-grid {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    gap: 9px;
-    height: calc(100% - 78px);
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1.4fr 1fr;
+
+    gap:
+        9px;
+
+    height:
+        calc(100% - 78px);
+
 }
+
 
 .menu-one {
-    min-width: 0;
-    border-right: 1px solid #eee;
-    padding-right: 1px;
+
+    min-width:
+        0;
+
+    border-right:
+        1px solid #eee;
+
+    padding-right:
+        4px;
+
 }
+
+
+.menu-right {
+
+    min-width:
+        0;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        8px;
+
+}
+
+
+/* =========================================================
+   MENU 2 Y 3
+========================================================= */
+
+.menu-two,
+.menu-three {
+
+    min-width:
+        0;
+
+    padding-left:
+        1px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    overflow:
+        hidden;
+
+}
+
 
 .menu-two {
-    min-width: 0;
-    padding-left: 1px;
-    display: flex;
-    flex-direction: column;
+
+    flex:
+        1;
+
 }
+
+
+.menu-three {
+
+    flex:
+        1;
+
+    border-top:
+        1px dashed #bbb;
+
+    padding-top:
+        5px;
+
+}
+
+
+
+/* =========================================================
+   ENCABEZADOS
+========================================================= */
 
 .menu-heading {
-    background: var(--accent);
-    height: 29px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background:
+        var(--accent);
 
-    font-size: 11px;
-    font-weight: 1000;
+    min-height:
+        29px;
 
-    margin-bottom: 5px;
-    color: white;
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        11px;
+
+    font-weight:
+        1000;
+
+    margin-bottom:
+        5px;
+
+    color:
+        white;
+
+    text-align:
+        center;
+
 }
+
 
 .menu-section {
-    margin-bottom: 1px;
+
+    margin-bottom:
+        0px;
+
 }
+
 
 .section-heading {
-    font-size: 14px;
-    font-weight: 1000;
-    margin-bottom: -2px !important;
+
+    font-size:
+        14px;
+
+    font-weight:
+        1000;
+
+    margin-bottom:
+        -5px;
+
 }
+
 
 .items {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-}
 
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        1px;
+
+}
 
 
 .menu-item {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 13.8px !important;
-    line-height: 0.9;
-    font-weight: 500;
-    font-style: italic;
-    letter-spacing: 0.1px;
-    overflow-wrap: break-word;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:
+        13.8px;
+
+    line-height:
+        .9;
+
+    font-weight:
+        500;
+
+    font-style:
+        italic;
+
+    letter-spacing:
+        .1px;
+
+    overflow-wrap:
+        break-word;
+
 }
+
 
 .menu-one .menu-item {
-    position: relative;
-    padding-left: 3px;
+
+    position:
+        relative;
+
+    padding-left:
+        3px;
+
+    font-size:16px !important;
+
 }
+
 
 .menu-one .menu-item::before {
-    content: "✦";
-    position: absolute;
-    left: -9px;
-    font-weight: 300;
-    font-style: normal;
+
+    content:
+        "✦";
+
+    position:
+        absolute;
+
+    left:
+        -9px;
+
+    font-weight:
+        300;
+
+    font-style:
+        normal;
+
 }
 
-.menu-two > .items {
-    gap: 3px;
-    padding: 4px 3px 0;
+
+.menu-two > .items,
+.menu-three > .items {
+
+    gap:
+        3px;
+
+    padding:
+        4px 3px 0;
+
+    flex:
+        1;
+
+    overflow:
+        hidden;
+
 }
 
-.menu-two .menu-item {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px !important;
-    line-height: 0.8;
-    font-weight: 600;
-    letter-spacing: 0.1px;
-    padding-left: 10px;
-    position: relative;
+
+.menu-two .menu-item,
+.menu-three .menu-item {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:
+        14px!important;
+
+    line-height:
+        .8;
+
+    font-weight:
+        600;
+
+    letter-spacing:
+        .1px;
+
+    padding-left:
+        10px;
+
+    position:
+        relative;
+
 }
 
-.menu-two .menu-item::before {
-    content: "✦";
-    position: absolute;
-    left: -3px;
-    font-weight: 300;
+
+.menu-two .menu-item::before,
+.menu-three .menu-item::before {
+
+    content:
+        "✦";
+
+    position:
+        absolute;
+
+    left:
+        -3px;
+
+    font-weight:
+        300;
+
 }
+
+
+/* =========================================================
+   PRECIOS MENU
+========================================================= */
 
 .prices {
-    padding-top: 2px;
+
+    padding-top:
+        2px;
+
 }
+
 
 .prices > div {
-    
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1px !important;
-    line-height: 0.89;
-    margin-bottom: 1;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        1px;
+
+    line-height:
+        .89;
+
+    margin-bottom:
+        1px;
+
 }
+
 
 .prices span {
-    color: #ff2200;
-    font-size: 13.5px;
-    font-weight: 900 !important;
-    background: #fff7e7;
-    margin: 1px;
-    padding: 1px 2px;
+
+    color:
+        #ff2200;
+
+    font-size:
+        13.5px;
+
+    font-weight:
+        900;
+
+    background:
+        #fff7e7;
+
+    margin:
+        1px;
+
+    padding:
+        1px 2px;
 
 }
 
-.prices strong {
-    font-size: 13.5px;
-    white-space: nowrap;
-    background: #fff7e7;
-        padding: 1px 3px;
 
+.prices strong {
+
+    font-size:
+        13.5px;
+
+    white-space:
+        nowrap;
+
+    background:
+        #fff7e7;
+
+    padding:
+        1px 3px;
 
 }
 
@@ -797,111 +2107,210 @@ body {
 ========================================================= */
 
 .modal-overlay {
-    position: fixed;
-    inset: 0;
 
-    background: rgba(0,0,0,0.55);
+    position:
+        fixed;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    inset:
+        0;
 
-    z-index: 1000;
+    background:
+        rgba(0,0,0,.55);
 
-    padding: 20px;
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    z-index:
+        1000;
+
+    padding:
+        20px;
+
 }
 
-.modal-overlay.hidden {
-    display: none;
-}
 
 .recipe-modal {
-    width: 100%;
-    max-width: 430px;
 
-    background: white;
+    width:
+        100%;
 
-    border-radius: 15px;
+    max-width:
+        430px;
+
+    background:
+        white;
+
+    border-radius:
+        15px;
 
     box-shadow:
-        0 25px 70px rgba(0,0,0,0.25);
+        0 25px 70px rgba(0,0,0,.25);
 
-    overflow: hidden;
+    overflow:
+        hidden;
+
 }
+
 
 .modal-header {
-    padding: 20px 22px;
 
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+    padding:
+        20px 22px;
 
-    border-bottom: 1px solid #eee;
+    display:
+        flex;
+
+    align-items:
+        flex-start;
+
+    justify-content:
+        space-between;
+
+    border-bottom:
+        1px solid #eee;
+
 }
+
 
 .modal-eyebrow {
-    font-size: 9px;
-    font-weight: 900;
-    letter-spacing: 2px;
-    color: var(--accent);
+
+    font-size:
+        9px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        2px;
+
+    color:
+        var(--accent);
+
 }
+
 
 .modal-header h2 {
-    font-size: 20px;
-    margin-top: 4px;
+
+    font-size:
+        20px;
+
+    margin-top:
+        4px;
+
 }
+
 
 .modal-close {
-    width: 32px;
-    height: 32px;
 
-    border: 0;
-    border-radius: 7px;
+    width:
+        32px;
 
-    background: #f4f4f4;
+    height:
+        32px;
 
-    font-size: 21px;
-    color: #777;
+    border:
+        0;
 
-    cursor: pointer;
+    border-radius:
+        7px;
+
+    background:
+        #f4f4f4;
+
+    font-size:
+        21px;
+
+    color:
+        #777;
+
+    cursor:
+        pointer;
+
 }
+
 
 .modal-body {
-    padding: 22px;
+
+    padding:
+        22px;
+
 }
+
 
 .modal-actions {
-    padding: 15px 22px;
 
-    display: flex;
-    justify-content: flex-end;
-    gap: 8px;
+    padding:
+        15px 22px;
 
-    border-top: 1px solid #eee;
+    display:
+        flex;
+
+    justify-content:
+        flex-end;
+
+    gap:
+        8px;
+
+    border-top:
+        1px solid #eee;
+
 }
+
 
 .modal-actions button {
-    height: 40px;
-    padding: 0 15px;
 
-    border-radius: 8px;
+    height:
+        40px;
 
-    font-size: 12px;
-    font-weight: 800;
+    padding:
+        0 15px;
 
-    cursor: pointer;
+    border-radius:
+        8px;
+
+    font-size:
+        12px;
+
+    font-weight:
+        800;
+
+    cursor:
+        pointer;
+
 }
+
 
 .modal-cancel {
-    background: white;
-    border: 1px solid #ddd;
-    color: #666;
+
+    background:
+        white;
+
+    border:
+        1px solid #ddd;
+
+    color:
+        #666;
+
 }
 
+
 .modal-save {
-    background: var(--accent);
-    color: white;
-    border: 0;
+
+    background:
+        var(--accent);
+
+    color:
+        white;
+
+    border:
+        0;
+
 }
 
 
@@ -912,71 +2321,162 @@ body {
 @media (max-width: 1200px) {
 
     .sidebar {
-        width: 340px;
+
+        width:
+            340px;
+
     }
+
 
     .preview-area {
-        padding: 25px;
+
+        padding:
+            25px;
+
     }
 
+
     .menu-sheet {
-        transform-origin: top center;
-        transform: scale(0.9);
-        margin-bottom: -110px;
+
+        transform-origin:
+            top center;
+
+        transform:
+            scale(.9);
+
+        margin-bottom:
+            -110px;
+
     }
+
 }
+
 
 @media (max-width: 900px) {
 
     .app {
-        flex-direction: column;
+
+        flex-direction:
+            column;
+
     }
+
 
     .sidebar {
-        width: 100%;
-        border-right: 0;
-        border-bottom: 1px solid #ddd;
+
+        width:
+            100%;
+
+        border-right:
+            0;
+
+        border-bottom:
+            1px solid #ddd;
+
     }
+
 
     .sidebar-content {
-        height: auto;
-        max-height: 70vh;
+
+        height:
+            auto;
+
+        max-height:
+            70vh;
+
     }
+
 
     .preview-area {
-        padding: 20px;
+
+        padding:
+            20px;
+
     }
 
+
     .preview-header {
-        align-items: flex-start;
-        gap: 15px;
-        flex-direction: column;
+
+        align-items:
+            flex-start;
+
+        gap:
+            15px;
+
+        flex-direction:
+            column;
+
     }
+
 }
+
 
 @media (max-width: 650px) {
 
     .menu-sheet {
-        transform: scale(0.5);
-        transform-origin: top left;
 
-        margin-right: -397px;
-        margin-bottom: -560px;
+        transform:
+            scale(.5);
+
+        transform-origin:
+            top left;
+
+        margin-right:
+            -397px;
+
+        margin-bottom:
+            -560px;
+
     }
+
 
     .paper-wrapper {
-        justify-content: flex-start;
-        overflow-x: auto;
+
+        justify-content:
+            flex-start;
+
+        overflow-x:
+            auto;
+
     }
+
 
     .price-grid {
-        grid-template-columns: 1fr;
-        gap: 10px;
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            10px;
+
     }
 
+
     .recipe-dropdown {
-        max-height: 180px;
+
+        max-height:
+            180px;
+
     }
+
+
+    input,
+    select,
+    textarea {
+
+        font-size:
+            16px !important;
+
+    }
+
+
+    .recipe-search {
+
+        font-size:
+            16px !important;
+
+    }
+
 }
 
 
@@ -987,52 +2487,99 @@ body {
 @media print {
 
     @page {
-        size: A4 portrait;
-        margin: 0;
+
+        size:
+            A4 portrait;
+
+        margin:
+            0;
+
     }
 
+
     body {
-        background: white;
+
+        background:
+            white;
+
     }
+
 
     .sidebar,
     .preview-header {
-        display: none !important;
+
+        display:
+            none !important;
+
     }
+
 
     .preview-area {
-        padding: 0;
-        overflow: visible;
+
+        padding:
+            0;
+
+        overflow:
+            visible;
+
     }
+
 
     .paper-wrapper {
-        padding: 0;
+
+        padding:
+            0;
+
     }
+
 
     .menu-sheet {
-        width: 210mm;
-        height: 297mm;
 
-        box-shadow: none;
+        width:
+            210mm;
 
-        transform: none !important;
+        height:
+            297mm;
+
+        box-shadow:
+            none;
+
+        transform:
+            none !important;
+
     }
+
 }
 
 /* =========================================================
-   EVITAR ZOOM AUTOMÁTICO EN CELULARES
+   PRECIO EJECUTIVO DEBAJO DE LAS RECETAS
+   CUANDO MENU 3 ESTA INACTIVO
 ========================================================= */
 
-@media (max-width: 650px) {
+.menu-right:has(.menu-three.hidden) .menu-two {
+    display: flex;
+    flex-direction: column;
+}
 
-    input,
-    select,
-    textarea {
-        font-size: 16px !important;
-    }
+/* Las recetas ocupan solo el espacio que necesitan */
+.menu-right:has(.menu-three.hidden) .menu-two > .items {
+    flex: 0 0 auto;
+    overflow: visible;
+}
 
-    .recipe-search {
-        font-size: 16px !important;
-    }
+/* Precio inmediatamente después de las recetas */
+.menu-right:has(.menu-three.hidden) .menu-two .prices {
+    flex: 0 0 auto;
+    padding-top: 5px;
+    margin-top: 2px;
+}
 
+.menu-three .menu-item {
+    font-size: 19px !important;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 2px 5px;
+    margin: 1px 0;
+    border-radius: 3px;
+    padding-left: 22px;
+    text-align: center;
 }

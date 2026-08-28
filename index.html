@@ -1,397 +1,993 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Generador de Menús - Restaurante</title>
+<head>
 
-    <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Generador de Menús - Restaurante
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="styles.css"
+    >
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  </head>
 
-  <body>
-    <div class="app">
-      <!-- =====================================================
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+    <!-- =====================================================
          SIDEBAR
     ====================================================== -->
 
-      <aside class="sidebar">
-        <div class="brand">
-          <div class="brand-icon">🍽️</div>
+    <aside class="sidebar">
 
-          <div>
-            <h1>Generador</h1>
-            <span>de menús</span>
-          </div>
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                🍽️
+            </div>
+
+            <div>
+
+                <h1>
+                    Generador
+                </h1>
+
+                <span>
+                    de menús
+                </span>
+
+            </div>
+
         </div>
 
+
         <div class="sidebar-content">
-          <!-- DATOS RESTAURANTE -->
 
-          <section class="form-section">
-            <div class="section-title">
-              <span>01</span>
-              <h2>Datos del restaurante</h2>
-            </div>
 
-            <div class="field">
-              <label>Nombre</label>
+            <!-- =================================================
+                 DATOS RESTAURANTE
+            ================================================== -->
 
-              <input
-                type="text"
-                id="restaurantName"
-                value="EXQUISIT RESTAURANT"
-                placeholder="Nombre del restaurante"
-              />
-            </div>
+            <section class="form-section">
 
-            <div class="field">
-              <label>Teléfono 1</label>
+                <div class="section-title">
 
-              <input
-                type="text"
-                id="phone1"
-                value="3001900104"
-                placeholder="Teléfono"
-              />
-            </div>
+                    <span>01</span>
 
-            <div class="field">
-              <label>Teléfono 2</label>
+                    <h2>
+                        Datos del restaurante
+                    </h2>
 
-              <input
-                type="text"
-                id="phone2"
-                value="3142513029"
-                placeholder="Teléfono"
-              />
-            </div>
+                </div>
 
-            <div class="field">
-              <label>Dirección</label>
 
-              <input
-                type="text"
-                id="address"
-                value="AV. CARACAS #34-17 LOCAL 2"
-                placeholder="Dirección"
-              />
-            </div>
+                <div class="field">
 
-            <div class="field">
-              <label>Texto destacado</label>
+                    <label>
+                        Nombre
+                    </label>
 
-              <input
-                type="text"
-                id="highlight"
-                value="MENÚ"
-                placeholder="MENÚ"
-              />
-            </div>
-          </section>
+                    <input
+                        type="text"
+                        id="restaurantName"
+                        value="EXQUISIT RESTAURANT"
+                        placeholder="Nombre del restaurante"
+                    >
 
-          <!-- =================================================
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Teléfono 1
+                    </label>
+
+                    <input
+                        type="text"
+                        id="phone1"
+                        value="3001900104"
+                        placeholder="Teléfono"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Teléfono 2
+                    </label>
+
+                    <input
+                        type="text"
+                        id="phone2"
+                        value="3142513029"
+                        placeholder="Teléfono"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Dirección
+                    </label>
+
+                    <input
+                        type="text"
+                        id="address"
+                        value="AV. CARACAS #34-17 LOCAL 2"
+                        placeholder="Dirección"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Texto destacado
+                    </label>
+
+                    <input
+                        type="text"
+                        id="highlight"
+                        value="MENÚ"
+                        placeholder="MENÚ"
+                    >
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
                  ENTRADAS
             ================================================== -->
 
-          <section class="form-section">
-            <div class="section-title">
-              <span>02</span>
-              <h2>Entradas</h2>
-            </div>
+            <section class="form-section">
 
-            <div id="entradasContainer"></div>
-          </section>
+                <div class="section-title">
 
-          <!-- =================================================
+                    <span>02</span>
+
+                    <h2>
+                        Entradas
+                    </h2>
+
+                </div>
+
+
+                <div id="entradasContainer"></div>
+
+
+                <button
+                    type="button"
+                    class="add-option-btn"
+                    onclick="addEntrada()"
+                >
+                    <span>＋</span>
+                    Agregar otra entrada
+                </button>
+
+            </section>
+
+
+
+            <!-- =================================================
                  PRINCIPIOS
             ================================================== -->
 
-          <section class="form-section">
-            <div class="section-title">
-              <span>03</span>
-              <h2>Principios</h2>
-            </div>
+            <section class="form-section">
 
-            <div id="principiosContainer"></div>
-          </section>
+                <div class="section-title">
 
-          <!-- =================================================
+                    <span>03</span>
+
+                    <h2>
+                        Principios
+                    </h2>
+
+                </div>
+
+
+                <div id="principiosContainer"></div>
+
+
+                <button
+                    type="button"
+                    class="add-option-btn"
+                    onclick="addPrincipio()"
+                >
+                    <span>＋</span>
+                    Agregar otro principio
+                </button>
+
+            </section>
+
+
+
+            <!-- =================================================
                  PROTEÍNAS
             ================================================== -->
 
-          <section class="form-section">
-            <div class="section-title">
-              <span>04</span>
-              <h2>Proteínas</h2>
-            </div>
+            <section class="form-section">
 
-            <div id="proteinasContainer"></div>
-          </section>
+                <div class="section-title">
 
-          <!-- =================================================
+                    <span>04</span>
+
+                    <h2>
+                        Proteínas
+                    </h2>
+
+                </div>
+
+
+                <div id="proteinasContainer"></div>
+
+
+                <button
+                    type="button"
+                    class="add-option-btn"
+                    onclick="addProteina()"
+                >
+                    <span>＋</span>
+                    Agregar otra proteína
+                </button>
+
+            </section>
+
+
+
+            <!-- =================================================
                  MENU 2
             ================================================== -->
 
-          <section class="form-section">
-            <div class="section-title">
-              <span>05</span>
-              <h2>Menú #2</h2>
-            </div>
+            <section class="form-section">
 
-            <div id="menu2Container" class="dynamic-list"></div>
+                <div class="section-title">
 
-            <button type="button" class="add-btn" onclick="addMenu2Item()">
-              + Agregar plato
-            </button>
-          </section>
+                    <span>05</span>
 
-          <!-- =================================================
+                    <h2>
+                        Menú #2 · Ejecutivo
+                    </h2>
+
+                </div>
+
+
+                <div
+                    id="menu2Container"
+                    class="dynamic-list"
+                ></div>
+
+
+                <button
+                    type="button"
+                    class="add-menu-btn"
+                    onclick="addMenu2Item()"
+                >
+                    <span>＋</span>
+                    Agregar plato al ejecutivo
+                </button>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 MENU 3
+            ================================================== -->
+
+            <section class="form-section">
+
+                <div class="menu3-toggle-row">
+
+                    <div>
+
+                        <strong>
+                            Menú #3 · Especial del día
+                        </strong>
+
+                        <small>
+                            Activar solo cuando exista un especial
+                        </small>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="enableMenu3"
+                            onchange="toggleMenu3()"
+                        >
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+
+                <div
+                    id="menu3Section"
+                    class="menu3-section hidden"
+                >
+
+                    <div
+                        id="menu3Container"
+                        class="dynamic-list"
+                    ></div>
+
+
+                    <button
+                        type="button"
+                        class="add-menu3-btn"
+                        onclick="addMenu3Item()"
+                    >
+                        <span>＋</span>
+                        Agregar plato al especial
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
                  PRECIOS
             ================================================== -->
 
-          <section class="form-section">
-            <div class="section-title">
-              <span>06</span>
-              <h2>Precios</h2>
-            </div>
+            <section class="form-section">
 
-            <div class="price-grid">
-              <div class="field">
-                <label>Menú #1 salón</label>
+                <div class="section-title">
 
-                <div class="price-input">
-                  <span>$</span>
+                    <span>06</span>
 
-                  <input type="number" id="priceSalon1" value="14000" />
+                    <h2>
+                        Precios
+                    </h2>
+
                 </div>
-              </div>
 
-              <div class="field">
-                <label>Menú #1 domicilio</label>
 
-                <div class="price-input">
-                  <span>$</span>
+                <div class="price-group">
 
-                  <input type="number" id="priceDelivery1" value="15000" />
+                    <h3>
+                        Menú #1 · Corriente
+                    </h3>
+
+
+                    <div class="price-grid">
+
+                        <div class="field">
+
+                            <label>
+                                Salón
+                            </label>
+
+                            <div class="price-input">
+
+                                <span>$</span>
+
+                                <input
+                                    type="number"
+                                    id="priceSalon1"
+                                    value="14000"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                Domicilio
+                            </label>
+
+                            <div class="price-input">
+
+                                <span>$</span>
+
+                                <input
+                                    type="number"
+                                    id="priceDelivery1"
+                                    value="15000"
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
                 </div>
-              </div>
 
-              <div class="field">
-                <label>Menú #2 salón</label>
 
-                <div class="price-input">
-                  <span>$</span>
 
-                  <input type="number" id="priceSalon2" value="22000" />
+                <div class="price-group">
+
+                    <h3>
+                        Menú #2 · Ejecutivo
+                    </h3>
+
+
+                    <div class="price-grid">
+
+                        <div class="field">
+
+                            <label>
+                                Salón
+                            </label>
+
+                            <div class="price-input">
+
+                                <span>$</span>
+
+                                <input
+                                    type="number"
+                                    id="priceSalon2"
+                                    value="22000"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                Domicilio
+                            </label>
+
+                            <div class="price-input">
+
+                                <span>$</span>
+
+                                <input
+                                    type="number"
+                                    id="priceDelivery2"
+                                    value="23000"
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
                 </div>
-              </div>
 
-              <div class="field">
-                <label>Menú #2 domicilio</label>
 
-                <div class="price-input">
-                  <span>$</span>
 
-                  <input type="number" id="priceDelivery2" value="23000" />
+                <div
+                    class="price-group menu3-price-group hidden"
+                    id="menu3PriceGroup"
+                >
+
+                    <h3>
+                        Menú #3 · Especial
+                    </h3>
+
+
+                    <div class="price-grid">
+
+                        <div class="field">
+
+                            <label>
+                                Salón
+                            </label>
+
+                            <div class="price-input">
+
+                                <span>$</span>
+
+                                <input
+                                    type="number"
+                                    id="priceSalon3"
+                                    value="25000"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                Domicilio
+                            </label>
+
+                            <div class="price-input">
+
+                                <span>$</span>
+
+                                <input
+                                    type="number"
+                                    id="priceDelivery3"
+                                    value="26000"
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
                 </div>
-              </div>
-            </div>
-          </section>
 
-          <!-- =================================================
+            </section>
+
+
+
+            <!-- =================================================
                  ACCIONES
             ================================================== -->
 
-          <div class="actions">
-            <button class="clear-btn" onclick="clearForm()">Limpiar</button>
+            <div class="actions">
 
-            <button class="png-btn" onclick="generatePNG()">
-              <span>↓</span>
-              Descargar PNG
-            </button>
+                <button
+                    class="clear-btn"
+                    onclick="clearForm()"
+                >
+                    Limpiar
+                </button>
 
-            <button class="pdf-btn" onclick="generatePDF()">
-              <span>↓</span>
-              Generar PDF
-            </button>
-          </div>
+
+                <button
+                    class="png-btn"
+                    onclick="generatePNG()"
+                >
+                    <span>↓</span>
+                    Descargar PNG
+                </button>
+
+
+                <button
+                    class="pdf-btn"
+                    onclick="generatePDF()"
+                >
+                    <span>↓</span>
+                    Generar PDF
+                </button>
+
+            </div>
+
+
         </div>
-      </aside>
 
-      <!-- =====================================================
+    </aside>
+
+
+
+    <!-- =====================================================
          PREVIEW
     ====================================================== -->
 
-      <main class="preview-area">
+    <main class="preview-area">
+
+
         <div class="preview-header">
-          <div>
-            <span class="eyebrow"> VISTA PREVIA </span>
 
-            <h2>Hoja de impresión</h2>
+            <div>
 
-            <p>6 menús por hoja A4</p>
-          </div>
+                <span class="eyebrow">
+                    VISTA PREVIA
+                </span>
 
-          <div class="status">
-            <span class="status-dot"></span>
+                <h2>
+                    Hoja de impresión
+                </h2>
 
-            Actualización automática
-          </div>
+                <p>
+                    6 menús por hoja A4
+                </p>
+
+            </div>
+
+
+            <div class="status">
+
+                <span class="status-dot"></span>
+
+                Actualización automática
+
+            </div>
+
         </div>
+
 
         <div class="paper-wrapper">
-          <div id="menuSheet" class="menu-sheet">
-            <div class="menu-card"></div>
-            <div class="menu-card"></div>
-            <div class="menu-card"></div>
-            <div class="menu-card"></div>
-            <div class="menu-card"></div>
-            <div class="menu-card"></div>
-          </div>
-        </div>
-      </main>
-    </div>
 
-    <!-- =========================================================
+            <div
+                id="menuSheet"
+                class="menu-sheet"
+            >
+
+                <div class="menu-card"></div>
+
+                <div class="menu-card"></div>
+
+                <div class="menu-card"></div>
+
+                <div class="menu-card"></div>
+
+                <div class="menu-card"></div>
+
+                <div class="menu-card"></div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+
+<!-- =========================================================
      TEMPLATE DEL MENU
 ========================================================== -->
 
-    <template id="menuTemplate">
-      <div class="menu-inner">
+<template id="menuTemplate">
+
+    <div class="menu-inner">
+
+
         <div class="menu-top">
-          <img
-            src="logo.png"
-            alt="Logo del restaurante"
-            class="restaurant-logo"
-          />
 
-          <div class="restaurant-name">EXQUISIT RESTAURANT</div>
+            <img
+                src="logo.png"
+                alt="Logo del restaurante"
+                class="restaurant-logo"
+            >
 
-          <img src="images/menu.png" alt="Menú" class="menu-badge-image" />
+
+            <div class="restaurant-name">
+                EXQUISIT RESTAURANT
+            </div>
+
+
+            <img
+                src="images/menu.png"
+                alt="Menú"
+                class="menu-badge-image"
+            >
+
         </div>
+
+
 
         <div class="contact-info">
-          <div class="service">SERVICIO A DOMICILIO</div>
 
-          <div class="phones">3001900104 - 3142513029</div>
+            <div class="service">
+                SERVICIO A DOMICILIO
+            </div>
 
-          <div class="address">AV. CARACAS #34-17 LOCAL 2</div>
+            <div class="phones">
+                3001900104 - 3142513029
+            </div>
+
+            <div class="address">
+                AV. CARACAS #34-17 LOCAL 2
+            </div>
+
         </div>
+
+
 
         <div class="menus-grid">
-          <!-- MENU 1 -->
 
-          <div class="menu-one">
-            <div class="menu-heading">MENÚ #1</div>
 
-            <div class="menu-section">
-              <div class="section-heading">ENTRADAS</div>
+            <!-- =================================================
+                 MENU 1
+            ================================================== -->
 
-              <div class="items entradas-preview"></div>
+            <div class="menu-one">
+
+                <div class="menu-heading">
+                    MENÚ #1 · CORRIENTE
+                </div>
+
+
+                <div class="menu-section">
+
+                    <div class="section-heading">
+                        ENTRADAS
+                    </div>
+
+                    <div class="items entradas-preview"></div>
+
+                </div>
+
+
+                <div class="menu-section">
+
+                    <div class="section-heading">
+                        PRINCIPIOS
+                    </div>
+
+                    <div class="items principios-preview"></div>
+
+                </div>
+
+
+                <div class="menu-section">
+
+                    <div class="section-heading">
+                        PROTEÍNAS
+                    </div>
+
+                    <div class="items proteinas-preview"></div>
+
+                </div>
+
+
+                <div class="prices">
+
+                    <div>
+
+                        <span>
+                            En el salón
+                        </span>
+
+                        <strong class="price-salon-1">
+                            $14.000
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            A domicilio
+                        </span>
+
+                        <strong class="price-delivery-1">
+                            $15.000
+                        </strong>
+
+                    </div>
+
+                </div>
+
             </div>
 
-            <div class="menu-section">
-              <div class="section-heading">PRINCIPIOS</div>
 
-              <div class="items principios-preview"></div>
+
+            <!-- =================================================
+                 COLUMNA DERECHA
+            ================================================== -->
+
+            <div class="menu-right">
+
+
+                <!-- MENU 2 -->
+
+                <div class="menu-two">
+
+                    <div class="menu-heading">
+                        MENÚ #2 · EJECUTIVO
+                    </div>
+
+                    <div class="items menu2-preview"></div>
+
+                    <div class="prices">
+
+                        <div>
+
+                            <span>
+                                En el salón
+                            </span>
+
+                            <strong class="price-salon-2">
+                                $22.000
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                A domicilio
+                            </span>
+
+                            <strong class="price-delivery-2">
+                                $23.000
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- MENU 3 -->
+
+                <div class="menu-three hidden">
+
+                    <div class="menu-heading">
+                        MENÚ #3 · ESPECIAL
+                    </div>
+
+                    <div class="items menu3-preview"></div>
+
+                    <div class="prices">
+
+                        <div>
+
+                            <span>
+                                En el salón
+                            </span>
+
+                            <strong class="price-salon-3">
+                                $25.000
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                A domicilio
+                            </span>
+
+                            <strong class="price-delivery-3">
+                                $26.000
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
             </div>
 
-            <div class="menu-section">
-              <div class="section-heading">PROTEÍNAS</div>
 
-              <div class="items proteinas-preview"></div>
-            </div>
-
-            <div class="prices">
-              <div>
-                <span>En el salón</span>
-
-                <strong class="price-salon-1"> $14.000 </strong>
-              </div>
-
-              <div>
-                <span>A domicilio</span>
-
-                <strong class="price-delivery-1"> $15.000 </strong>
-              </div>
-            </div>
-          </div>
-
-          <!-- MENU 2 -->
-
-          <div class="menu-two">
-            <div class="menu-heading">MENÚ #2</div>
-
-            <div class="items menu2-preview"></div>
-
-            <div class="prices">
-              <div>
-                <span>En el salón</span>
-
-                <strong class="price-salon-2"> $22.000 </strong>
-              </div>
-
-              <div>
-                <span>A domicilio</span>
-
-                <strong class="price-delivery-2"> $23.000 </strong>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-    </template>
 
-    <!-- =========================================================
+    </div>
+
+</template>
+
+
+
+<!-- =========================================================
      MODAL NUEVA RECETA
 ========================================================== -->
 
-    <div id="recipeModal" class="modal-overlay hidden">
-      <div class="recipe-modal">
+<div
+    id="recipeModal"
+    class="modal-overlay hidden"
+>
+
+    <div class="recipe-modal">
+
+
         <div class="modal-header">
-          <div>
-            <span class="modal-eyebrow"> RECETAS </span>
 
-            <h2>Nueva receta</h2>
-          </div>
+            <div>
 
-          <button class="modal-close" onclick="closeRecipeModal()">×</button>
+                <span class="modal-eyebrow">
+                    RECETAS
+                </span>
+
+                <h2>
+                    Nueva receta
+                </h2>
+
+            </div>
+
+
+            <button
+                class="modal-close"
+                onclick="closeRecipeModal()"
+            >
+                ×
+            </button>
+
         </div>
+
+
 
         <div class="modal-body">
-          <div class="field">
-            <label> Categoría </label>
 
-            <select id="newRecipeCategory"></select>
-          </div>
+            <div class="field">
 
-          <div class="field">
-            <label> Nombre de la receta </label>
+                <label>
+                    Categoría
+                </label>
 
-            <input
-              type="text"
-              id="newRecipeName"
-              placeholder="Ej: Pechuga en salsa de champiñones"
-            />
-          </div>
+                <select
+                    id="newRecipeCategory"
+                ></select>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Nombre de la receta
+                </label>
+
+                <input
+                    type="text"
+                    id="newRecipeName"
+                    placeholder="Ej: Pechuga en salsa de champiñones"
+                >
+
+            </div>
+
         </div>
+
+
 
         <div class="modal-actions">
-          <button class="modal-cancel" onclick="closeRecipeModal()">
-            Cancelar
-          </button>
 
-          <button class="modal-save" onclick="saveNewRecipe()">
-            Guardar receta
-          </button>
+            <button
+                class="modal-cancel"
+                onclick="closeRecipeModal()"
+            >
+                Cancelar
+            </button>
+
+
+            <button
+                class="modal-save"
+                onclick="saveNewRecipe()"
+            >
+                Guardar receta
+            </button>
+
         </div>
-      </div>
+
     </div>
 
-    <script src="app.js"></script>
-  </body>
+</div>
+
+
+
+<script src="app.js"></script>
+
+</body>
+
 </html>
