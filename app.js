@@ -987,7 +987,7 @@ function renderProteinas() {
 
 
 /* =========================================================
-   AGREGAR PROTEINA
+   AGREGAR NUEVA PROTEÍNA
 ========================================================= */
 
 function addProteina() {
@@ -995,49 +995,20 @@ function addProteina() {
     const newCategory =
         `extra_${Date.now()}`;
 
-
     recipes[newCategory] =
         [];
 
-
-    const name =
-        prompt(
-            "Nombre de la nueva proteína:"
-        );
-
-
-    if (!name) {
-
-        delete recipes[newCategory];
-
-        return;
-
-    }
-
-
-    recipes[newCategory] =
-        [];
-
-
-    const currentProteinas =
-        data.proteinas;
-
-
-    currentProteinas[newCategory] =
+    data.proteinas[newCategory] =
         "";
 
-
     proteinLabels[newCategory] =
-        name;
-
+        "Nueva proteína";
 
     renderProteinas();
 
     updatePreview();
 
 }
-
-
 /* =========================================================
    MODAL NUEVA RECETA
 ========================================================= */

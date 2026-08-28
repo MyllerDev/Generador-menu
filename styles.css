@@ -1937,7 +1937,7 @@ select {
     padding-left:
         3px;
 
-    font-size:14.2px !important;
+    font-size:13.5px !important;
 
 }
 
@@ -2592,4 +2592,10 @@ select {
 
 .menu-three {
     transform: translateY(-19px);
+}
+
+.menu-heading {
+    background: #f9050e !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
 }
