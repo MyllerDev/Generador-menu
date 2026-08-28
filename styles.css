@@ -1814,7 +1814,7 @@ select {
 .menu-three {
 
     flex:
-        1;
+        0 0 auto;
 
     border-top:
         1px dashed #bbb;
@@ -1909,7 +1909,7 @@ select {
         sans-serif;
 
     font-size:
-        13.8px;
+        12.8px;
 
     line-height:
         .9;
@@ -1937,7 +1937,7 @@ select {
     padding-left:
         3px;
 
-    font-size:16px !important;
+    font-size:14.2px !important;
 
 }
 
@@ -1969,14 +1969,20 @@ select {
         3px;
 
     padding:
-        4px 3px 0;
+        2px 3px 0;
 
     flex:
-        1;
+        0 0 auto;
 
     overflow:
         hidden;
 
+}
+
+.menu-three .prices {
+    flex: 0 0 auto;
+    margin-top: -3px;
+    padding-top: 3px;
 }
 
 
@@ -2580,6 +2586,10 @@ select {
     padding: 2px 5px;
     margin: 1px 0;
     border-radius: 3px;
-    padding-left: 22px;
+    padding-left: 20px;
     text-align: center;
+}
+
+.menu-three {
+    transform: translateY(-19px);
 }
