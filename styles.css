@@ -2045,7 +2045,7 @@ select {
     */
 
     transform:
-        translateY(-1px);
+        translateY(-10px);
 
     /*
        Importante para PDF y PNG:
