@@ -1798,7 +1798,7 @@ select {
         column;
 
     overflow:
-        hidden;
+        visible;
 
 }
 
@@ -1825,7 +1825,6 @@ select {
 }
 
 
-
 /* =========================================================
    ENCABEZADOS
 ========================================================= */
@@ -1833,7 +1832,7 @@ select {
 .menu-heading {
 
     background:
-        var(--accent);
+        #f9050e !important;
 
     min-height:
         29px;
@@ -1861,6 +1860,12 @@ select {
 
     text-align:
         center;
+
+    -webkit-print-color-adjust:
+        exact;
+
+    print-color-adjust:
+        exact;
 
 }
 
@@ -1937,7 +1942,8 @@ select {
     padding-left:
         3px;
 
-    font-size:13.5px !important;
+    font-size:
+        13.5px !important;
 
 }
 
@@ -1975,14 +1981,8 @@ select {
         0 0 auto;
 
     overflow:
-        hidden;
+        visible;
 
-}
-
-.menu-three .prices {
-    flex: 0 0 auto;
-    margin-top: -3px;
-    padding-top: 3px;
 }
 
 
@@ -1995,7 +1995,7 @@ select {
         sans-serif;
 
     font-size:
-        14px!important;
+        14px !important;
 
     line-height:
         .8;
@@ -2029,6 +2029,130 @@ select {
 
     font-weight:
         300;
+
+}
+
+
+/* =========================================================
+   MENU 3 ESPECIAL
+========================================================= */
+
+.menu-three {
+
+    /*
+       Se sube visualmente sin alterar
+       el flujo del contenido.
+    */
+
+    transform:
+        translateY(-1px);
+
+    /*
+       Importante para PDF y PNG:
+       permitir que html2canvas capture
+       todo el encabezado rojo.
+    */
+
+    overflow:
+        visible;
+
+    position:
+        relative;
+
+    z-index:
+        5;
+
+}
+
+
+.menu-three .menu-heading {
+
+    background:
+        #f9050e !important;
+
+    color:
+        white !important;
+
+    min-height:
+        29px;
+
+    height:
+        auto;
+
+    padding:
+        6px 4px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    position:
+        relative;
+
+    z-index:
+        10;
+
+    -webkit-print-color-adjust:
+        exact;
+
+    print-color-adjust:
+        exact;
+
+}
+
+
+/*
+   Recetas del menú especial
+*/
+
+.menu-three .menu-item {
+
+    font-size:
+        15px !important;
+
+    line-height:
+        1 !important;
+
+    font-weight:
+        600;
+
+    background:
+        rgba(255,255,255,.85);
+
+    padding:
+        2px 5px 2px 20px;
+
+    margin:
+        1px 0;
+
+    border-radius:
+        3px;
+
+    text-align:
+        center;
+
+    position:
+        relative;
+
+    overflow:
+        visible;
+
+}
+
+
+/*
+   Espacio entre el símbolo y la receta
+*/
+
+.menu-three .menu-item::before {
+
+    left:
+        3px;
 
 }
 
@@ -2104,6 +2228,84 @@ select {
 
     padding:
         1px 3px;
+
+}
+
+
+/* =========================================================
+   PRECIO MENU 3
+========================================================= */
+
+.menu-three .prices {
+
+    flex:
+        0 0 auto;
+
+    margin-top:
+        2px;
+
+    padding-top:
+        3px;
+
+}
+
+
+.menu-three .prices > div {
+
+    justify-content:
+        center;
+
+    gap:
+        5px;
+
+}
+
+
+.menu-three .prices span,
+.menu-three .prices strong {
+
+    font-size:
+        13px;
+
+}
+
+
+/* =========================================================
+   MENU 2 SIN MENU 3
+========================================================= */
+
+.menu-right:has(.menu-three.hidden) .menu-two {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+}
+
+
+.menu-right:has(.menu-three.hidden) .menu-two > .items {
+
+    flex:
+        0 0 auto;
+
+    overflow:
+        visible;
+
+}
+
+
+.menu-right:has(.menu-three.hidden) .menu-two .prices {
+
+    flex:
+        0 0 auto;
+
+    padding-top:
+        5px;
+
+    margin-top:
+        2px;
 
 }
 
@@ -2487,7 +2689,7 @@ select {
 
 
 /* =========================================================
-   PRINT
+   PRINT / PDF
 ========================================================= */
 
 @media print {
@@ -2503,10 +2705,34 @@ select {
     }
 
 
+    html,
     body {
+
+        width:
+            210mm;
+
+        height:
+            297mm;
+
+        margin:
+            0;
+
+        padding:
+            0;
 
         background:
             white;
+
+    }
+
+
+    body {
+
+        -webkit-print-color-adjust:
+            exact;
+
+        print-color-adjust:
+            exact;
 
     }
 
@@ -2536,6 +2762,15 @@ select {
         padding:
             0;
 
+        width:
+            210mm;
+
+        height:
+            297mm;
+
+        overflow:
+            visible;
+
     }
 
 
@@ -2547,55 +2782,139 @@ select {
         height:
             297mm;
 
+        min-width:
+            210mm;
+
+        min-height:
+            297mm;
+
         box-shadow:
             none;
 
         transform:
             none !important;
 
+        overflow:
+            hidden;
+
+    }
+
+
+    .menu-card {
+
+        overflow:
+            hidden;
+
+    }
+
+
+    /*
+       Corrección importante para el menú 3
+       durante la impresión/PDF.
+    */
+
+    .menu-three {
+
+        transform:
+            translateY(-19px);
+
+        overflow:
+            visible !important;
+
+        position:
+            relative;
+
+        z-index:
+            20;
+
+    }
+
+
+    .menu-three .menu-heading {
+
+        background:
+            #f9050e !important;
+
+        color:
+            white !important;
+
+        -webkit-print-color-adjust:
+            exact;
+
+        print-color-adjust:
+            exact;
+
     }
 
 }
 
+
 /* =========================================================
-   PRECIO EJECUTIVO DEBAJO DE LAS RECETAS
-   CUANDO MENU 3 ESTA INACTIVO
+   CORRECCIÓN PARA CAPTURA PNG / HTML2CANVAS
 ========================================================= */
 
-.menu-right:has(.menu-three.hidden) .menu-two {
-    display: flex;
-    flex-direction: column;
+.menu-three,
+.menu-three .menu-heading,
+.menu-three .menu-item,
+.menu-three .prices {
+
+    -webkit-print-color-adjust:
+        exact;
+
+    print-color-adjust:
+        exact;
+
 }
 
-/* Las recetas ocupan solo el espacio que necesitan */
-.menu-right:has(.menu-three.hidden) .menu-two > .items {
-    flex: 0 0 auto;
-    overflow: visible;
-}
 
-/* Precio inmediatamente después de las recetas */
-.menu-right:has(.menu-three.hidden) .menu-two .prices {
-    flex: 0 0 auto;
-    padding-top: 5px;
-    margin-top: 2px;
-}
-
-.menu-three .menu-item {
-    font-size: 19px !important;
-    background: rgba(255, 255, 255, 0.85);
-    padding: 2px 5px;
-    margin: 1px 0;
-    border-radius: 3px;
-    padding-left: 20px;
-    text-align: center;
-}
+/*
+   Evita que el transform del menú 3
+   genere un recorte visual durante la captura.
+*/
 
 .menu-three {
-    transform: translateY(-19px);
+
+    isolation:
+        isolate;
+
 }
 
-.menu-heading {
-    background: #f9050e !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+
+/*
+   El encabezado rojo debe tener su propia
+   área completa de renderizado.
+*/
+
+.menu-three .menu-heading {
+
+    width:
+        100%;
+
+    box-sizing:
+        border-box;
+
+    overflow:
+        visible;
+
 }
+
+
+/*
+   Mantiene el contenido especial dentro
+   del área capturable.
+*/
+
+.menu-three > * {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+}
+
+
+/* =========================================================
+   FIN
+========================================================= */
