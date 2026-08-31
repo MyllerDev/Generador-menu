@@ -2831,7 +2831,7 @@ async function generatePDF() {
                 ],
 
                 title:
-                    "Menú del restaurante"
+                    "Menú del día"
 
             });
 
@@ -3034,7 +3034,7 @@ async function generatePNG() {
                 ],
 
                 title:
-                    "Menú del restaurante"
+                    "Menú del día"
 
             });
 

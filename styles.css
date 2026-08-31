@@ -1659,11 +1659,20 @@ select {
     text-align:
         center;
 
+    width:
+        170px;
+
     max-width:
-        70%;
+        170px;
 
     line-height:
         1;
+
+    white-space:
+        normal;
+
+    overflow-wrap:
+        break-word;
 
 }
 
