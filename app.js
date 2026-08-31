@@ -2440,6 +2440,245 @@ async function createFixedCanvas(
 
 
 /* =========================================================
+   CREAR CANVAS FIJO PARA EXPORTACIÓN
+   MISMO RESULTADO EN PC Y CELULAR
+========================================================= */
+
+async function createFixedCanvas(
+    element,
+    width,
+    height,
+    scale = 2
+) {
+
+    /*
+     * Creamos un contenedor completamente independiente
+     * del viewport del dispositivo.
+     */
+
+    const container =
+        document.createElement("div");
+
+
+    container.style.position =
+        "fixed";
+
+    container.style.left =
+        "-100000px";
+
+    container.style.top =
+        "0";
+
+    container.style.width =
+        `${width}px`;
+
+    container.style.height =
+        `${height}px`;
+
+    container.style.minWidth =
+        `${width}px`;
+
+    container.style.maxWidth =
+        `${width}px`;
+
+    container.style.minHeight =
+        `${height}px`;
+
+    container.style.maxHeight =
+        `${height}px`;
+
+    container.style.background =
+        "white";
+
+    container.style.overflow =
+        "hidden";
+
+    container.style.zIndex =
+        "-9999";
+
+
+    /*
+     * Clonamos el elemento original.
+     */
+
+    const clone =
+        element.cloneNode(true);
+
+
+    clone.style.width =
+        `${width}px`;
+
+    clone.style.height =
+        `${height}px`;
+
+    clone.style.minWidth =
+        `${width}px`;
+
+    clone.style.minHeight =
+        `${height}px`;
+
+    clone.style.maxWidth =
+        `${width}px`;
+
+    clone.style.maxHeight =
+        `${height}px`;
+
+    clone.style.transform =
+        "none";
+
+    clone.style.margin =
+        "0";
+
+    clone.style.position =
+        "relative";
+
+    clone.style.left =
+        "0";
+
+    clone.style.top =
+        "0";
+
+
+    /*
+     * IMPORTANTE:
+     * Evita que el responsive del celular
+     * modifique el contenido exportado.
+     */
+
+    clone.querySelectorAll("*")
+        .forEach(el => {
+
+            el.style.maxWidth =
+                el.style.maxWidth || "none";
+
+        });
+
+
+    container.appendChild(
+        clone
+    );
+
+
+    document.body.appendChild(
+        container
+    );
+
+
+    /*
+     * Esperamos a que el navegador termine
+     * de renderizar el clon.
+     */
+
+    await new Promise(
+        resolve =>
+            requestAnimationFrame(
+                () =>
+                    requestAnimationFrame(
+                        resolve
+                    )
+            )
+    );
+
+
+    /*
+     * Esperamos imágenes.
+     */
+
+    const images =
+        clone.querySelectorAll(
+            "img"
+        );
+
+
+    await Promise.all(
+
+        Array.from(images)
+            .map(img => {
+
+                if (
+                    img.complete
+                ) {
+
+                    return Promise.resolve();
+
+                }
+
+                return new Promise(
+                    resolve => {
+
+                        img.onload =
+                            resolve;
+
+                        img.onerror =
+                            resolve;
+
+                    }
+                );
+
+            })
+
+    );
+
+
+    /*
+     * Generamos el canvas.
+     */
+
+    const canvas =
+        await html2canvas(
+            clone,
+            {
+
+                width:
+                    width,
+
+                height:
+                    height,
+
+                windowWidth:
+                    width,
+
+                windowHeight:
+                    height,
+
+                scale:
+                    scale,
+
+                useCORS:
+                    true,
+
+                allowTaint:
+                    false,
+
+                backgroundColor:
+                    "#ffffff",
+
+                logging:
+                    false,
+
+                foreignObjectRendering:
+                    false
+
+            }
+        );
+
+
+    /*
+     * Eliminamos el clon.
+     */
+
+    document.body.removeChild(
+        container
+    );
+
+
+    return canvas;
+
+}
+
+
+
+/* =========================================================
    PDF
 ========================================================= */
 
@@ -2481,10 +2720,15 @@ async function generatePDF() {
 
 
         /*
-         * SIEMPRE SE UTILIZAN LAS MISMAS DIMENSIONES.
+         * DIMENSIONES FIJAS.
          *
-         * Esto evita que el móvil genere un PDF diferente
-         * debido a su resolución o escala CSS.
+         * Siempre 794 x 1123.
+         * No importa si se genera desde:
+         *
+         * PC
+         * Android
+         * iPhone
+         * Tablet
          */
 
         const canvas =
@@ -2492,7 +2736,7 @@ async function generatePDF() {
                 original,
                 794,
                 1123,
-                2
+                3
             );
 
 
@@ -2567,7 +2811,7 @@ async function generatePDF() {
 
 
         /*
-         * COMPARTIR EN CELULARES
+         * COMPARTIR
          */
 
         if (
@@ -2611,10 +2855,6 @@ async function generatePDF() {
 
             link.download =
                 fileName;
-
-
-            link.style.display =
-                "none";
 
 
             document.body.appendChild(
@@ -2680,6 +2920,7 @@ async function generatePDF() {
 }
 
 
+
 /* =========================================================
    PNG
 ========================================================= */
@@ -2722,10 +2963,11 @@ async function generatePNG() {
 
 
         /*
-         * SOLO SE EXPORTA UN MENU.
+         * EXPORTAMOS SIEMPRE
+         * EL PRIMER MENÚ.
          *
-         * Se utiliza exactamente el mismo tamaño
-         * en PC y móviles.
+         * Tamaño fijo:
+         * 397 x 374
          */
 
         const original =
@@ -2832,10 +3074,13 @@ async function generatePNG() {
 
 
             setTimeout(
-                () =>
+                () => {
+
                     URL.revokeObjectURL(
                         url
-                    ),
+                    );
+
+                },
                 2000
             );
 
@@ -2876,7 +3121,6 @@ async function generatePNG() {
     }
 
 }
-
 
 /* =========================================================
    CERRAR DROPDOWNS
